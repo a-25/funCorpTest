@@ -7,6 +7,7 @@
 //
 
 #import "WaterfallItemCellCollectionViewCell.h"
+#import <AFNetworking/UIKit+AFNetworking.h>
 
 @implementation WaterfallItemCellCollectionViewCell
 
@@ -15,10 +16,20 @@
     // Initialization code
 }
 
--(void)configure:(nullable UIImage*)picture andTitle:(nullable NSString*)title
+-(void)configure:(WaterfallItemObject *)item
 {
-    self.pictureView.image = picture;
-    self.titleLabel.text = title;
+    UIImage *stub = [UIImage imageNamed:@"car"];
+    [self.pictureView setImageWithURL:[NSURL URLWithString:item.imageUrl] placeholderImage:stub];
+    
+    
+//    NSString *localPath = item.cachedPath;
+//    if(localPath) {
+//        self.pictureView.image = [UIImage imageWithContentsOfFile: localPath];
+//    } else {
+//        UIImage *stub = [UIImage imageNamed:@"car"];
+//        self.pictureView.image = stub;
+//    }
+    self.titleLabel.text = [NSString stringWithFormat:@"Tags: %@, views: %d", item.title, item.views];
 }
 
 -(void)prepareForReuse

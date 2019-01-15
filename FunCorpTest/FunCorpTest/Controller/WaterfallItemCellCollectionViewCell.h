@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WaterfallItemObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
--(void)configure:(nullable UIImage*)picture andTitle:(nullable NSString*)title;
+-(void)configure:(WaterfallItemObject *)item;
 
 @end
 

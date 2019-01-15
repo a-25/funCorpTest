@@ -10,18 +10,20 @@
 #import "Realm/Realm.h"
 #import "DIService.h"
 #import "PlanService.h"
-#import "WaterfallItemListService.h"
 #import "DatabaseService.h"
 #import "WaterfallItemObject.h"
 #import "WaterfallItemCellCollectionViewCell.h"
+#import "WaterfallItemPrefetcher.h"
+#import "FetchService.h"
 
 @interface WaterfallController () {
-    RLMResults* itemList;
+    WaterfallItemPrefetcher *prefetcher;
+    RLMNotificationToken *notificationToken;
 }
 
 @property(nonatomic, strong) PlanService *planService;
-@property(nonatomic, strong) WaterfallItemListService *waterfallItemListService;
 @property(nonatomic, strong) DatabaseService *databaseService;
+@property(nonatomic, strong) FetchService *fetchService;
 
 @end
 
@@ -33,8 +35,16 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     [super viewDidLoad];
     
     _planService = [DIService sharedInstance].planService;
-    _waterfallItemListService = [DIService sharedInstance].waterfallItemListService;
+    _fetchService = [DIService sharedInstance].fetchService;
     _databaseService = [DIService sharedInstance].databaseService;
+    
+    if (@available(iOS 10.0, *)) {
+//        self.collectionView.prefetchingEnabled = NO;
+//        self->prefetcher = [[WaterfallItemPrefetcher alloc] initWithFetchService:_fetchService];
+//        self.collectionView.prefetchDataSource = self->prefetcher;
+    } else {
+        // Fallback on earlier versions
+    }
     
     int margin = 10;
     
@@ -53,15 +63,47 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
         // Fallback on earlier versions
     }
     
-    
-    // Do any additional setup after loading the view.
-    [self refreshList];
     self.planService.currentPosition = 0;
+    [self bindUpdateNotifications];
+}
+
+- (void)dealloc {
+    [self->notificationToken invalidate];
 }
 
 -(UICollectionViewFlowLayout*)flowCollectionViewLayout
 {
     return (UICollectionViewFlowLayout*) self.collectionViewLayout;
+}
+
+-(void)bindUpdateNotifications
+{
+    __weak typeof(self) weakSelf = self;
+    self->notificationToken = [self.fetchService.itemList addNotificationBlock:^(RLMResults * _Nullable results, RLMCollectionChange * _Nullable change, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Failed to open Realm on background worker: %@", error);
+            return;
+        }
+        
+        UICollectionView *collectionView = weakSelf.collectionView;
+        // Initial run of the query will pass nil for the change information
+        if (!change) {
+            [collectionView reloadData];
+            return;
+        }
+        
+        NSLog(@"Delete: %@", [change deletionsInSection:0]);
+        NSLog(@"Insert: %@", [change insertionsInSection:0]);
+        NSLog(@"Update: %@", [change modificationsInSection:0]);
+        
+        [collectionView performBatchUpdates:^{
+            [collectionView deleteItemsAtIndexPaths:[change deletionsInSection:0]];
+            [collectionView insertItemsAtIndexPaths:[change insertionsInSection:0]];
+            [collectionView reloadItemsAtIndexPaths:[change modificationsInSection:0]];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }];
 }
 
 -(unsigned short)columns
@@ -93,11 +135,6 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
--(void)refreshList
-{
-    self->itemList = [self.waterfallItemListService list:[self.databaseService getRealm]];
-}
-
 -(void)userScrolled:(NSInteger)row
 {
     self.planService.currentPosition = row;
@@ -120,14 +157,19 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.waterfallItemListService listNumber:[self.databaseService getRealm]];
+    return self.fetchService.itemList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Fetching row %ld", (long)indexPath.row);
     WaterfallItemCellCollectionViewCell *cell = (WaterfallItemCellCollectionViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    WaterfallItemObject *item = [self->itemList objectAtIndex:indexPath.row];
-    UIImage *stub = [UIImage imageNamed:@"car"];
-    [cell configure:stub andTitle:[NSString stringWithFormat:@"Tags: %@, views: %d", item.title, item.views]];
+    WaterfallItemObject *item = [self.fetchService.itemList objectAtIndex:indexPath.row];
+    [cell configure:item];
+    if(![self.fetchService isDataFetchedForItem:item]) {
+        [self.fetchService fetchAsync:item completion:^(WaterfallItemObject * _Nonnull item) {
+            [cell configure:item];
+        }];
+    }
     return cell;
 }
 

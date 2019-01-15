@@ -36,6 +36,7 @@
     [self initWaterfallItemStoreService];
     [self initWaterfallItemListService];
     [self initPlanService];
+    [self initFetchService];
 }
 
 -(void)initDatabaseService
@@ -59,6 +60,11 @@
 {
     _planService = [[PlanService alloc] initWithStoreService:_databaseService andItemListService:_waterfallItemListService];
     _planService.storeService = _waterfallItemStoreService;
+}
+
+-(void)initFetchService
+{
+    _fetchService = [[FetchService alloc] initWithDatabaseService:_databaseService andWaterfallItemListService:_waterfallItemListService];
 }
 
 @end

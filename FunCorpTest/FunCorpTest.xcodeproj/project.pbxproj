@@ -16,13 +16,14 @@
 		EB12425021ECBC940080FC6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12424F21ECBC940080FC6D /* main.m */; };
 		EB12425D21ECEE770080FC6D /* DIService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12425C21ECEE770080FC6D /* DIService.m */; };
 		EB12426021ECEEDD0080FC6D /* PlanService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12425F21ECEEDD0080FC6D /* PlanService.m */; };
-		EB12426321ECEFE90080FC6D /* LoadImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426221ECEFE90080FC6D /* LoadImageService.m */; };
 		EB12426721ECF1F90080FC6D /* WaterfallController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426621ECF1F90080FC6D /* WaterfallController.m */; };
 		EB12426E21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426C21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m */; };
 		EB12427221EDDC0C0080FC6D /* DatabaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427121EDDC0C0080FC6D /* DatabaseService.m */; };
 		EB12427921EDE0560080FC6D /* WaterfallItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427821EDE0560080FC6D /* WaterfallItemObject.m */; };
 		EB12427D21EDE1E20080FC6D /* WaterfallItemStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427C21EDE1E20080FC6D /* WaterfallItemStoreService.m */; };
 		EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */; };
+		EB12428321EE004E0080FC6D /* WaterfallItemPrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */; };
+		EB12428621EE035E0080FC6D /* FetchService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12428521EE035E0080FC6D /* FetchService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +44,6 @@
 		EB12425C21ECEE770080FC6D /* DIService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIService.m; sourceTree = "<group>"; };
 		EB12425E21ECEEDD0080FC6D /* PlanService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanService.h; sourceTree = "<group>"; };
 		EB12425F21ECEEDD0080FC6D /* PlanService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanService.m; sourceTree = "<group>"; };
-		EB12426121ECEFE90080FC6D /* LoadImageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadImageService.h; sourceTree = "<group>"; };
-		EB12426221ECEFE90080FC6D /* LoadImageService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadImageService.m; sourceTree = "<group>"; };
 		EB12426521ECF1F90080FC6D /* WaterfallController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallController.h; sourceTree = "<group>"; };
 		EB12426621ECF1F90080FC6D /* WaterfallController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallController.m; sourceTree = "<group>"; };
 		EB12426B21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemCellCollectionViewCell.h; sourceTree = "<group>"; };
@@ -57,6 +56,10 @@
 		EB12427C21EDE1E20080FC6D /* WaterfallItemStoreService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemStoreService.m; sourceTree = "<group>"; };
 		EB12427E21EDEF1A0080FC6D /* WaterfallItemListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemListService.h; sourceTree = "<group>"; };
 		EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemListService.m; sourceTree = "<group>"; };
+		EB12428121EE004E0080FC6D /* WaterfallItemPrefetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemPrefetcher.h; sourceTree = "<group>"; };
+		EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemPrefetcher.m; sourceTree = "<group>"; };
+		EB12428421EE035E0080FC6D /* FetchService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FetchService.h; sourceTree = "<group>"; };
+		EB12428521EE035E0080FC6D /* FetchService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FetchService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +145,8 @@
 			children = (
 				EB12425E21ECEEDD0080FC6D /* PlanService.h */,
 				EB12425F21ECEEDD0080FC6D /* PlanService.m */,
-				EB12426121ECEFE90080FC6D /* LoadImageService.h */,
-				EB12426221ECEFE90080FC6D /* LoadImageService.m */,
+				EB12428421EE035E0080FC6D /* FetchService.h */,
+				EB12428521EE035E0080FC6D /* FetchService.m */,
 			);
 			path = Fetch;
 			sourceTree = "<group>";
@@ -158,6 +161,8 @@
 				EB12426621ECF1F90080FC6D /* WaterfallController.m */,
 				EB12426B21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.h */,
 				EB12426C21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m */,
+				EB12428121EE004E0080FC6D /* WaterfallItemPrefetcher.h */,
+				EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB12428321EE004E0080FC6D /* WaterfallItemPrefetcher.m in Sources */,
 				EB12426E21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m in Sources */,
 				EB12427D21EDE1E20080FC6D /* WaterfallItemStoreService.m in Sources */,
 				EB12425D21ECEE770080FC6D /* DIService.m in Sources */,
@@ -287,7 +293,7 @@
 				EB12425021ECBC940080FC6D /* main.m in Sources */,
 				EB12426021ECEEDD0080FC6D /* PlanService.m in Sources */,
 				EB12424221ECBC920080FC6D /* AppDelegate.m in Sources */,
-				EB12426321ECEFE90080FC6D /* LoadImageService.m in Sources */,
+				EB12428621EE035E0080FC6D /* FetchService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

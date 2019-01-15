@@ -10,6 +10,7 @@
 #import "WaterfallItemStoreService.h"
 #import "WaterfallItemListService.h"
 #import "PlanService.h"
+#import "FetchService.h"
 #import "DatabaseService.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -22,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,readonly) WaterfallItemStoreService *waterfallItemStoreService;
 @property(nonatomic,strong,readonly) WaterfallItemListService *waterfallItemListService;
 @property(nonatomic,strong,readonly) PlanService *planService;
+@property(nonatomic,strong,readonly) FetchService *fetchService;
 @property(nonatomic) unsigned short colsCount;
 //@property(nonatomic) unsigned short defaultPortion;
 @property(nonatomic, strong) NSString *pixabayApiKey;

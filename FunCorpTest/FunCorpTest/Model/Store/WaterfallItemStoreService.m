@@ -57,19 +57,11 @@
             [realm commitWriteTransaction];
         }
     });
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-//        RLMRealm *realm = [weakSelf.databaseService getRealm];
-//
-//        WaterfallItemObject *item = [weakSelf createRealmObject:];
-//        [realm transactionWithBlock:^{
-//            [realm addObject:item];
-//        }];
-//    });
 }
 
 -(WaterfallItemObject*)createRealmObject:(id)item withRealm:(RLMRealm*)realm
 {
-    NSString *url = item[@"largeImageURL"];
+    NSString *url = item[@"webformatURL"];
     WaterfallItemObject *obj = [WaterfallItemObject objectInRealm:realm forPrimaryKey:url];
     if(obj == nil) {
         obj = [[WaterfallItemObject alloc] init];
