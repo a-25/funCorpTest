@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA3FCD33F09C336F5CF5F463 /* libPods-FunCorpTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1E9E473C755188B0C38664 /* libPods-FunCorpTest.a */; };
 		EB12424221ECBC920080FC6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12424121ECBC920080FC6D /* AppDelegate.m */; };
 		EB12424521ECBC920080FC6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12424421ECBC920080FC6D /* ViewController.m */; };
 		EB12424821ECBC920080FC6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB12424621ECBC920080FC6D /* Main.storyboard */; };
@@ -18,9 +19,16 @@
 		EB12426321ECEFE90080FC6D /* LoadImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426221ECEFE90080FC6D /* LoadImageService.m */; };
 		EB12426721ECF1F90080FC6D /* WaterfallController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426621ECF1F90080FC6D /* WaterfallController.m */; };
 		EB12426E21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426C21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m */; };
+		EB12427221EDDC0C0080FC6D /* DatabaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427121EDDC0C0080FC6D /* DatabaseService.m */; };
+		EB12427921EDE0560080FC6D /* WaterfallItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427821EDE0560080FC6D /* WaterfallItemObject.m */; };
+		EB12427D21EDE1E20080FC6D /* WaterfallItemStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427C21EDE1E20080FC6D /* WaterfallItemStoreService.m */; };
+		EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F0D98B21803AFAB74C6B08A /* Pods-FunCorpTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunCorpTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunCorpTest/Pods-FunCorpTest.debug.xcconfig"; sourceTree = "<group>"; };
+		4A1E9E473C755188B0C38664 /* libPods-FunCorpTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FunCorpTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57A48FE5351F7C93984F3E20 /* Pods-FunCorpTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunCorpTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunCorpTest/Pods-FunCorpTest.release.xcconfig"; sourceTree = "<group>"; };
 		EB12423D21ECBC920080FC6D /* FunCorpTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunCorpTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12424021ECBC920080FC6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EB12424121ECBC920080FC6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -41,6 +49,14 @@
 		EB12426621ECF1F90080FC6D /* WaterfallController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallController.m; sourceTree = "<group>"; };
 		EB12426B21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemCellCollectionViewCell.h; sourceTree = "<group>"; };
 		EB12426C21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemCellCollectionViewCell.m; sourceTree = "<group>"; };
+		EB12427021EDDC0C0080FC6D /* DatabaseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseService.h; sourceTree = "<group>"; };
+		EB12427121EDDC0C0080FC6D /* DatabaseService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseService.m; sourceTree = "<group>"; };
+		EB12427721EDE0560080FC6D /* WaterfallItemObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemObject.h; sourceTree = "<group>"; };
+		EB12427821EDE0560080FC6D /* WaterfallItemObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemObject.m; sourceTree = "<group>"; };
+		EB12427B21EDE1E20080FC6D /* WaterfallItemStoreService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemStoreService.h; sourceTree = "<group>"; };
+		EB12427C21EDE1E20080FC6D /* WaterfallItemStoreService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemStoreService.m; sourceTree = "<group>"; };
+		EB12427E21EDEF1A0080FC6D /* WaterfallItemListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemListService.h; sourceTree = "<group>"; };
+		EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemListService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,17 +64,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA3FCD33F09C336F5CF5F463 /* libPods-FunCorpTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14E317AE57C9986450F2250E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1F0D98B21803AFAB74C6B08A /* Pods-FunCorpTest.debug.xcconfig */,
+				57A48FE5351F7C93984F3E20 /* Pods-FunCorpTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B02CDC13BEEC87CA9D3C927B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A1E9E473C755188B0C38664 /* libPods-FunCorpTest.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EB12423421ECBC920080FC6D = {
 			isa = PBXGroup;
 			children = (
 				EB12423F21ECBC920080FC6D /* FunCorpTest */,
 				EB12423E21ECBC920080FC6D /* Products */,
+				14E317AE57C9986450F2250E /* Pods */,
+				B02CDC13BEEC87CA9D3C927B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,9 +124,15 @@
 		EB12425621ECEDF70080FC6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EB12427A21EDE1C00080FC6D /* Store */,
+				EB12427621EDE0290080FC6D /* ObjectModel */,
 				EB12425B21ECEE770080FC6D /* DIService.h */,
 				EB12425C21ECEE770080FC6D /* DIService.m */,
 				EB12425721ECEDFF0080FC6D /* Fetch */,
+				EB12427021EDDC0C0080FC6D /* DatabaseService.h */,
+				EB12427121EDDC0C0080FC6D /* DatabaseService.m */,
+				EB12427E21EDEF1A0080FC6D /* WaterfallItemListService.h */,
+				EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,6 +162,24 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		EB12427621EDE0290080FC6D /* ObjectModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB12427721EDE0560080FC6D /* WaterfallItemObject.h */,
+				EB12427821EDE0560080FC6D /* WaterfallItemObject.m */,
+			);
+			path = ObjectModel;
+			sourceTree = "<group>";
+		};
+		EB12427A21EDE1C00080FC6D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				EB12427B21EDE1E20080FC6D /* WaterfallItemStoreService.h */,
+				EB12427C21EDE1E20080FC6D /* WaterfallItemStoreService.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,6 +187,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB12425321ECBC940080FC6D /* Build configuration list for PBXNativeTarget "FunCorpTest" */;
 			buildPhases = (
+				FC58B97B5779C97CC75A97DC /* [CP] Check Pods Manifest.lock */,
 				EB12423921ECBC920080FC6D /* Sources */,
 				EB12423A21ECBC920080FC6D /* Frameworks */,
 				EB12423B21ECBC920080FC6D /* Resources */,
@@ -185,14 +246,43 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FC58B97B5779C97CC75A97DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FunCorpTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB12423921ECBC920080FC6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EB12426E21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m in Sources */,
+				EB12427D21EDE1E20080FC6D /* WaterfallItemStoreService.m in Sources */,
 				EB12425D21ECEE770080FC6D /* DIService.m in Sources */,
+				EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */,
+				EB12427221EDDC0C0080FC6D /* DatabaseService.m in Sources */,
 				EB12424521ECBC920080FC6D /* ViewController.m in Sources */,
+				EB12427921EDE0560080FC6D /* WaterfallItemObject.m in Sources */,
 				EB12426721ECF1F90080FC6D /* WaterfallController.m in Sources */,
 				EB12425021ECBC940080FC6D /* main.m in Sources */,
 				EB12426021ECEEDD0080FC6D /* PlanService.m in Sources */,
@@ -337,6 +427,7 @@
 		};
 		EB12425421ECBC940080FC6D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F0D98B21803AFAB74C6B08A /* Pods-FunCorpTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -353,6 +444,7 @@
 		};
 		EB12425521ECBC940080FC6D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57A48FE5351F7C93984F3E20 /* Pods-FunCorpTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

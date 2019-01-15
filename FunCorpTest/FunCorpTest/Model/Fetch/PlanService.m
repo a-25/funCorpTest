@@ -8,25 +8,46 @@
 
 #import "PlanService.h"
 
+//@TODO. Move to properties
+const unsigned short forwardFetchSize = 5;
+const unsigned short loadSize = 10;
+
+@interface PlanService()
+
+@property(nonatomic) unsigned long loadedInDatabaseNumber;
+
+@end
+
 @implementation PlanService
 
-- (id)init
+-(id)init
+{
+    @throw nil;
+}
+
+- (instancetype)initWithStoreService:(DatabaseService*)databaseService andItemListService:(WaterfallItemListService*)itemListService
 {
     if (self = [super init]){
         _currentPosition = 0;
+        _databaseService = databaseService;
+        _itemListService = itemListService;
+        _loadedInDatabaseNumber = [itemListService listNumber:[databaseService getRealm]];
     }
     return self;
 }
 
-- (void)setCurrentPosition:(int)currentPosition
+- (void)setCurrentPosition:(unsigned long)currentPosition
 {
     _currentPosition = currentPosition;
-    [self load:currentPosition];
+    if(currentPosition > _loadedInDatabaseNumber - forwardFetchSize) {
+        [self loadNext];
+    }
 }
 
--(void)load:(int)currentPosition
+-(void)loadNext
 {
-//    int 
+    int currentPage = floor(_loadedInDatabaseNumber/loadSize);
+    [_storeService importFromApi:currentPage andPerPage:loadSize];
 }
 
 @end

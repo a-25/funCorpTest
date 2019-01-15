@@ -7,10 +7,21 @@
 //
 
 #import "WaterfallController.h"
+#import "Realm/Realm.h"
 #import "DIService.h"
+#import "PlanService.h"
+#import "WaterfallItemListService.h"
+#import "DatabaseService.h"
+#import "WaterfallItemObject.h"
 #import "WaterfallItemCellCollectionViewCell.h"
 
-@interface WaterfallController ()
+@interface WaterfallController () {
+    RLMResults* itemList;
+}
+
+@property(nonatomic, strong) PlanService *planService;
+@property(nonatomic, strong) WaterfallItemListService *waterfallItemListService;
+@property(nonatomic, strong) DatabaseService *databaseService;
 
 @end
 
@@ -20,6 +31,10 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _planService = [DIService sharedInstance].planService;
+    _waterfallItemListService = [DIService sharedInstance].waterfallItemListService;
+    _databaseService = [DIService sharedInstance].databaseService;
     
     int margin = 10;
     
@@ -40,6 +55,8 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     
     
     // Do any additional setup after loading the view.
+    [self refreshList];
+    self.planService.currentPosition = 0;
 }
 
 -(UICollectionViewFlowLayout*)flowCollectionViewLayout
@@ -76,6 +93,16 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
+-(void)refreshList
+{
+    self->itemList = [self.waterfallItemListService list:[self.databaseService getRealm]];
+}
+
+-(void)userScrolled:(NSInteger)row
+{
+    self.planService.currentPosition = row;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -93,15 +120,14 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 100;
+    return [self.waterfallItemListService listNumber:[self.databaseService getRealm]];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WaterfallItemCellCollectionViewCell *cell = (WaterfallItemCellCollectionViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    UIImage *image = [UIImage imageNamed:@"car"];
-    [cell configure:image andTitle:[NSString stringWithFormat:@"Title %ld", indexPath.row + 1]];
-    // Configure the cell
-    
+    WaterfallItemObject *item = [self->itemList objectAtIndex:indexPath.row];
+    UIImage *stub = [UIImage imageNamed:@"car"];
+    [cell configure:stub andTitle:[NSString stringWithFormat:@"Tags: %@, views: %d", item.title, item.views]];
     return cell;
 }
 
@@ -135,5 +161,33 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 	
 }
 */
+
+#pragma mark <UIScrollViewDelegate>
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    __block NSInteger xmax = 0;
+    [self.collectionView.indexPathsForVisibleItems enumerateObjectsUsingBlock:^(NSIndexPath *visibleIndexPath, NSUInteger idx, BOOL *stop) {
+        if (visibleIndexPath.row > xmax) {
+            xmax = visibleIndexPath.row;
+        }
+    }];
+    
+
+//    CGRect visibleRect = (CGRect){.origin = self.collectionView.contentOffset, .size = self.collectionView.bounds.size};
+//    CGPoint visiblePoint = CGPointMake(CGRectGetMidX(visibleRect), CGRectGetMidY(visibleRect));
+//    NSIndexPath *visibleIndexPath = [self.collectionView indexPathForItemAtPoint:visiblePoint];
+    [self userScrolled: xmax];
+//    //scrolled to bottom end
+//    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+//    if (bottomEdge >= scrollView.contentSize.height) {
+//        [self scrolledToBottom];
+//    }
+}
+
+//for (UICollectionViewCell *cell in [self.mainImageCollection visibleCells]) {
+//    NSIndexPath *indexPath = [self.mainImageCollection indexPathForCell:cell];
+//    NSLog(@"%@",indexPath);
+//}
 
 @end

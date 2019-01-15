@@ -30,7 +30,35 @@
 
 -(void)initialize
 {
-    _colsCount = 3;
+    _colsCount = 2;
+    _pixabayApiKey = @"11279126-f72f121dda9da0d41789c9986";
+    [self initDatabaseService];
+    [self initWaterfallItemStoreService];
+    [self initWaterfallItemListService];
+    [self initPlanService];
+}
+
+-(void)initDatabaseService
+{
+    _databaseService = [[DatabaseService alloc] init];
+}
+
+-(void)initWaterfallItemStoreService
+{
+    _waterfallItemStoreService = [[WaterfallItemStoreService alloc] init];
+    _waterfallItemStoreService.databaseService = _databaseService;
+    _waterfallItemStoreService.apiKey = _pixabayApiKey;
+}
+
+-(void)initWaterfallItemListService
+{
+    _waterfallItemListService = [[WaterfallItemListService alloc] init];
+}
+
+-(void)initPlanService
+{
+    _planService = [[PlanService alloc] initWithStoreService:_databaseService andItemListService:_waterfallItemListService];
+    _planService.storeService = _waterfallItemStoreService;
 }
 
 @end

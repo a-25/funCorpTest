@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WaterfallItemStoreService.h"
+#import "WaterfallItemListService.h"
+#import "PlanService.h"
+#import "DatabaseService.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,8 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(DIService*)sharedInstance;
 
-//@property(nonatomic,strong,readonly) CoreDataManager *coreDataManager;
+@property(nonatomic,strong,readonly) DatabaseService *databaseService;
+@property(nonatomic,strong,readonly) WaterfallItemStoreService *waterfallItemStoreService;
+@property(nonatomic,strong,readonly) WaterfallItemListService *waterfallItemListService;
+@property(nonatomic,strong,readonly) PlanService *planService;
 @property(nonatomic) unsigned short colsCount;
+//@property(nonatomic) unsigned short defaultPortion;
+@property(nonatomic, strong) NSString *pixabayApiKey;
 
 @end
 

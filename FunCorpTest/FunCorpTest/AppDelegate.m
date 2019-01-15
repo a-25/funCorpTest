@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DIService.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [DIService sharedInstance];
+    [[DIService sharedInstance].waterfallItemStoreService importFromApi:1 andPerPage:20];
     return YES;
 }
 
