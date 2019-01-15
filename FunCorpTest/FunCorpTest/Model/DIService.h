@@ -15,6 +15,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+static NSString * const notificationSettingsChanged = @"notificationSettingsChanged";
+
 @interface DIService : NSObject
 
 +(DIService*)sharedInstance;

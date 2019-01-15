@@ -24,6 +24,7 @@
 		EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */; };
 		EB12428321EE004E0080FC6D /* WaterfallItemPrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */; };
 		EB12428621EE035E0080FC6D /* FetchService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12428521EE035E0080FC6D /* FetchService.m */; };
+		EBD83FC421EE473C00DF42F8 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC321EE473C00DF42F8 /* SettingsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,8 @@
 		EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemPrefetcher.m; sourceTree = "<group>"; };
 		EB12428421EE035E0080FC6D /* FetchService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FetchService.h; sourceTree = "<group>"; };
 		EB12428521EE035E0080FC6D /* FetchService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FetchService.m; sourceTree = "<group>"; };
+		EBD83FC221EE473C00DF42F8 /* SettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		EBD83FC321EE473C00DF42F8 /* SettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 				EB12426C21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m */,
 				EB12428121EE004E0080FC6D /* WaterfallItemPrefetcher.h */,
 				EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */,
+				EBD83FC221EE473C00DF42F8 /* SettingsController.h */,
+				EBD83FC321EE473C00DF42F8 /* SettingsController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			files = (
 				EB12428321EE004E0080FC6D /* WaterfallItemPrefetcher.m in Sources */,
 				EB12426E21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m in Sources */,
+				EBD83FC421EE473C00DF42F8 /* SettingsController.m in Sources */,
 				EB12427D21EDE1E20080FC6D /* WaterfallItemStoreService.m in Sources */,
 				EB12425D21ECEE770080FC6D /* DIService.m in Sources */,
 				EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */,

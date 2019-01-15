@@ -15,10 +15,13 @@
 #import "WaterfallItemCellCollectionViewCell.h"
 #import "WaterfallItemPrefetcher.h"
 #import "FetchService.h"
+#import "SettingsController.h"
 
 @interface WaterfallController () {
     WaterfallItemPrefetcher *prefetcher;
     RLMNotificationToken *notificationToken;
+    CGFloat lastScrolledPosition;
+    CGFloat itemHeight;
 }
 
 @property(nonatomic, strong) PlanService *planService;
@@ -102,6 +105,10 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
             
         }];
     }];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(settingsChanged:)
+                                                 name:notificationSettingsChanged
+                                               object:nil];
 }
 
 -(unsigned short)columns
@@ -124,7 +131,8 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     }
     CGFloat marginsAndInsets = layout.sectionInset.left + layout.sectionInset.right + collectionSafeAreaInsets.left + collectionSafeAreaInsets.right + layout.minimumInteritemSpacing * (CGFloat)(cellsPerRow - 1);
     CGFloat itemWidth = floor((self.collectionView.bounds.size.width - marginsAndInsets) / (CGFloat)cellsPerRow);
-    layout.itemSize =  CGSizeMake(itemWidth, floor(1.33 * itemWidth));
+    self->itemHeight = floor(1.33 * itemWidth);
+    layout.itemSize = CGSizeMake(itemWidth, self->itemHeight);
 }
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -138,15 +146,10 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     self.planService.currentPosition = row;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)settingsChanged:(NSNotification*)notification
+{
+    [self.collectionView setNeedsLayout];
 }
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -184,9 +187,15 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     WaterfallItemObject *item = [self.fetchService.itemList objectAtIndex:indexPath.row];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:item.pageUrl]
-                                       options:@{}
-                             completionHandler:nil];
+    NSURL *url = [NSURL URLWithString:item.pageUrl];
+    if (@available(iOS 10.0, *)) {
+        [[UIApplication sharedApplication] openURL:url
+                                           options:@{}
+                                 completionHandler:nil];
+    } else {
+        // Fallback on earlier versions
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 
@@ -209,6 +218,13 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    CGFloat currentPosition = scrollView.contentOffset.y;
+    //only significant changes
+    if(fabs(currentPosition - self->lastScrolledPosition) < self->itemHeight) {
+        return;
+    }
+    self->lastScrolledPosition = currentPosition;
+    
     __block NSInteger xmax = 0;
     [self.collectionView.indexPathsForVisibleItems enumerateObjectsUsingBlock:^(NSIndexPath *visibleIndexPath, NSUInteger idx, BOOL *stop) {
         if (visibleIndexPath.row > xmax) {
@@ -216,11 +232,6 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
         }
     }];
     [self userScrolled: xmax];
-//    //scrolled to bottom end
-//    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-//    if (bottomEdge >= scrollView.contentSize.height) {
-//        [self scrolledToBottom];
-//    }
 }
 
 @end

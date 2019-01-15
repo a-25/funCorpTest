@@ -62,6 +62,7 @@
 -(void)loadNext:(unsigned long)loadedInDatabaseNumber
 {
     int currentPage = floor(loadedInDatabaseNumber/self.loadSize);
+    NSLog(@"LoadNext, %d, %ld", currentPage, self.loadSize);
     [_storeService importFromApi:currentPage andPerPage:self.loadSize];
 }
 

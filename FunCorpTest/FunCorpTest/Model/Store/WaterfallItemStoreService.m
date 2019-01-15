@@ -15,8 +15,8 @@
 
 -(void)importFromApi:(unsigned long)page andPerPage:(unsigned long)perPage
 {
-    //just yellow flowers - why not?
-    NSString *query = @"yellow+flowers";
+    //just hedgehogs - why not?
+    NSString *query = @"hedgehog";
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
