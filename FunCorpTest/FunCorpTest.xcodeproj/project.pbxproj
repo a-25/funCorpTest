@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA3FCD33F09C336F5CF5F463 /* libPods-FunCorpTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1E9E473C755188B0C38664 /* libPods-FunCorpTest.a */; };
 		EB12424221ECBC920080FC6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12424121ECBC920080FC6D /* AppDelegate.m */; };
 		EB12424521ECBC920080FC6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12424421ECBC920080FC6D /* ViewController.m */; };
 		EB12424821ECBC920080FC6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB12424621ECBC920080FC6D /* Main.storyboard */; };
@@ -15,12 +16,29 @@
 		EB12425021ECBC940080FC6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12424F21ECBC940080FC6D /* main.m */; };
 		EB12425D21ECEE770080FC6D /* DIService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12425C21ECEE770080FC6D /* DIService.m */; };
 		EB12426021ECEEDD0080FC6D /* PlanService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12425F21ECEEDD0080FC6D /* PlanService.m */; };
-		EB12426321ECEFE90080FC6D /* LoadImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426221ECEFE90080FC6D /* LoadImageService.m */; };
 		EB12426721ECF1F90080FC6D /* WaterfallController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426621ECF1F90080FC6D /* WaterfallController.m */; };
-		EB12426E21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12426C21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m */; };
+		EB12427221EDDC0C0080FC6D /* DatabaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427121EDDC0C0080FC6D /* DatabaseService.m */; };
+		EB12427921EDE0560080FC6D /* WaterfallItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427821EDE0560080FC6D /* WaterfallItemObject.m */; };
+		EB12427D21EDE1E20080FC6D /* PictureStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427C21EDE1E20080FC6D /* PictureStoreService.m */; };
+		EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */; };
+		EB33348B21EF842B0021A20E /* WaterfallScrollService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB33348A21EF842B0021A20E /* WaterfallScrollService.m */; };
+		EBD83FC421EE473C00DF42F8 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC321EE473C00DF42F8 /* SettingsController.m */; };
+		EBD83FC721EF1DF700DF42F8 /* PictureObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC621EF1DF700DF42F8 /* PictureObject.m */; };
+		EBD83FCA21EF1E2100DF42F8 /* AdsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC921EF1E2100DF42F8 /* AdsObject.m */; };
+		EBD83FCF21EF206000DF42F8 /* WaterfallItemCreateService.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FCE21EF206000DF42F8 /* WaterfallItemCreateService.m */; };
+		EBD83FD221EF227100DF42F8 /* UniqueHashGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FD121EF227100DF42F8 /* UniqueHashGenerator.m */; };
+		EBD83FD721EF26E900DF42F8 /* PictureViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FD521EF26E900DF42F8 /* PictureViewCell.m */; };
+		EBD83FD821EF26E900DF42F8 /* PictureViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBD83FD621EF26E900DF42F8 /* PictureViewCell.xib */; };
+		EBD83FDD21EF27DD00DF42F8 /* AdsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FDB21EF27DD00DF42F8 /* AdsViewCell.m */; };
+		EBD83FDE21EF27DD00DF42F8 /* AdsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBD83FDC21EF27DD00DF42F8 /* AdsViewCell.xib */; };
+		EBD83FE221EF2BA000DF42F8 /* AdsCreateService.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FE121EF2BA000DF42F8 /* AdsCreateService.m */; };
+		EBD83FE521EF2C1600DF42F8 /* AdsImportService.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FE421EF2C1600DF42F8 /* AdsImportService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F0D98B21803AFAB74C6B08A /* Pods-FunCorpTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunCorpTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunCorpTest/Pods-FunCorpTest.debug.xcconfig"; sourceTree = "<group>"; };
+		4A1E9E473C755188B0C38664 /* libPods-FunCorpTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FunCorpTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57A48FE5351F7C93984F3E20 /* Pods-FunCorpTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunCorpTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunCorpTest/Pods-FunCorpTest.release.xcconfig"; sourceTree = "<group>"; };
 		EB12423D21ECBC920080FC6D /* FunCorpTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunCorpTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12424021ECBC920080FC6D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EB12424121ECBC920080FC6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -35,12 +53,38 @@
 		EB12425C21ECEE770080FC6D /* DIService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIService.m; sourceTree = "<group>"; };
 		EB12425E21ECEEDD0080FC6D /* PlanService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanService.h; sourceTree = "<group>"; };
 		EB12425F21ECEEDD0080FC6D /* PlanService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanService.m; sourceTree = "<group>"; };
-		EB12426121ECEFE90080FC6D /* LoadImageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadImageService.h; sourceTree = "<group>"; };
-		EB12426221ECEFE90080FC6D /* LoadImageService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadImageService.m; sourceTree = "<group>"; };
 		EB12426521ECF1F90080FC6D /* WaterfallController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallController.h; sourceTree = "<group>"; };
 		EB12426621ECF1F90080FC6D /* WaterfallController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallController.m; sourceTree = "<group>"; };
-		EB12426B21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemCellCollectionViewCell.h; sourceTree = "<group>"; };
-		EB12426C21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemCellCollectionViewCell.m; sourceTree = "<group>"; };
+		EB12427021EDDC0C0080FC6D /* DatabaseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseService.h; sourceTree = "<group>"; };
+		EB12427121EDDC0C0080FC6D /* DatabaseService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseService.m; sourceTree = "<group>"; };
+		EB12427721EDE0560080FC6D /* WaterfallItemObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemObject.h; sourceTree = "<group>"; };
+		EB12427821EDE0560080FC6D /* WaterfallItemObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemObject.m; sourceTree = "<group>"; };
+		EB12427B21EDE1E20080FC6D /* PictureStoreService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureStoreService.h; sourceTree = "<group>"; };
+		EB12427C21EDE1E20080FC6D /* PictureStoreService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureStoreService.m; sourceTree = "<group>"; };
+		EB12427E21EDEF1A0080FC6D /* WaterfallItemListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemListService.h; sourceTree = "<group>"; };
+		EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemListService.m; sourceTree = "<group>"; };
+		EB33348921EF842B0021A20E /* WaterfallScrollService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallScrollService.h; sourceTree = "<group>"; };
+		EB33348A21EF842B0021A20E /* WaterfallScrollService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallScrollService.m; sourceTree = "<group>"; };
+		EBD83FC221EE473C00DF42F8 /* SettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		EBD83FC321EE473C00DF42F8 /* SettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		EBD83FC521EF1DF700DF42F8 /* PictureObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureObject.h; sourceTree = "<group>"; };
+		EBD83FC621EF1DF700DF42F8 /* PictureObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureObject.m; sourceTree = "<group>"; };
+		EBD83FC821EF1E2100DF42F8 /* AdsObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdsObject.h; sourceTree = "<group>"; };
+		EBD83FC921EF1E2100DF42F8 /* AdsObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdsObject.m; sourceTree = "<group>"; };
+		EBD83FCD21EF206000DF42F8 /* WaterfallItemCreateService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemCreateService.h; sourceTree = "<group>"; };
+		EBD83FCE21EF206000DF42F8 /* WaterfallItemCreateService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemCreateService.m; sourceTree = "<group>"; };
+		EBD83FD021EF227100DF42F8 /* UniqueHashGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniqueHashGenerator.h; sourceTree = "<group>"; };
+		EBD83FD121EF227100DF42F8 /* UniqueHashGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UniqueHashGenerator.m; sourceTree = "<group>"; };
+		EBD83FD421EF26E900DF42F8 /* PictureViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureViewCell.h; sourceTree = "<group>"; };
+		EBD83FD521EF26E900DF42F8 /* PictureViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureViewCell.m; sourceTree = "<group>"; };
+		EBD83FD621EF26E900DF42F8 /* PictureViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureViewCell.xib; sourceTree = "<group>"; };
+		EBD83FDA21EF27DD00DF42F8 /* AdsViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdsViewCell.h; sourceTree = "<group>"; };
+		EBD83FDB21EF27DD00DF42F8 /* AdsViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdsViewCell.m; sourceTree = "<group>"; };
+		EBD83FDC21EF27DD00DF42F8 /* AdsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsViewCell.xib; sourceTree = "<group>"; };
+		EBD83FE021EF2BA000DF42F8 /* AdsCreateService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdsCreateService.h; sourceTree = "<group>"; };
+		EBD83FE121EF2BA000DF42F8 /* AdsCreateService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdsCreateService.m; sourceTree = "<group>"; };
+		EBD83FE321EF2C1600DF42F8 /* AdsImportService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdsImportService.h; sourceTree = "<group>"; };
+		EBD83FE421EF2C1600DF42F8 /* AdsImportService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdsImportService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,17 +92,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA3FCD33F09C336F5CF5F463 /* libPods-FunCorpTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14E317AE57C9986450F2250E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1F0D98B21803AFAB74C6B08A /* Pods-FunCorpTest.debug.xcconfig */,
+				57A48FE5351F7C93984F3E20 /* Pods-FunCorpTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B02CDC13BEEC87CA9D3C927B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A1E9E473C755188B0C38664 /* libPods-FunCorpTest.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EB12423421ECBC920080FC6D = {
 			isa = PBXGroup;
 			children = (
 				EB12423F21ECBC920080FC6D /* FunCorpTest */,
 				EB12423E21ECBC920080FC6D /* Products */,
+				14E317AE57C9986450F2250E /* Pods */,
+				B02CDC13BEEC87CA9D3C927B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,9 +152,16 @@
 		EB12425621ECEDF70080FC6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EBD83FDF21EF2B8900DF42F8 /* Ads */,
+				EBD83FCC21EF202800DF42F8 /* Picture */,
+				EBD83FCB21EF1FB200DF42F8 /* WaterfallItem */,
+				EB12427621EDE0290080FC6D /* ObjectModel */,
 				EB12425B21ECEE770080FC6D /* DIService.h */,
 				EB12425C21ECEE770080FC6D /* DIService.m */,
-				EB12425721ECEDFF0080FC6D /* Fetch */,
+				EB12427021EDDC0C0080FC6D /* DatabaseService.h */,
+				EB12427121EDDC0C0080FC6D /* DatabaseService.m */,
+				EBD83FD021EF227100DF42F8 /* UniqueHashGenerator.h */,
+				EBD83FD121EF227100DF42F8 /* UniqueHashGenerator.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,8 +171,6 @@
 			children = (
 				EB12425E21ECEEDD0080FC6D /* PlanService.h */,
 				EB12425F21ECEEDD0080FC6D /* PlanService.m */,
-				EB12426121ECEFE90080FC6D /* LoadImageService.h */,
-				EB12426221ECEFE90080FC6D /* LoadImageService.m */,
 			);
 			path = Fetch;
 			sourceTree = "<group>";
@@ -109,15 +178,76 @@
 		EB12426421ECF1D70080FC6D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EBD83FD921EF27B900DF42F8 /* Waterfall */,
 				EB12424321ECBC920080FC6D /* ViewController.h */,
 				EB12424421ECBC920080FC6D /* ViewController.m */,
 				EB12424621ECBC920080FC6D /* Main.storyboard */,
-				EB12426521ECF1F90080FC6D /* WaterfallController.h */,
-				EB12426621ECF1F90080FC6D /* WaterfallController.m */,
-				EB12426B21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.h */,
-				EB12426C21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m */,
+				EBD83FC221EE473C00DF42F8 /* SettingsController.h */,
+				EBD83FC321EE473C00DF42F8 /* SettingsController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		EB12427621EDE0290080FC6D /* ObjectModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB12427721EDE0560080FC6D /* WaterfallItemObject.h */,
+				EB12427821EDE0560080FC6D /* WaterfallItemObject.m */,
+				EBD83FC521EF1DF700DF42F8 /* PictureObject.h */,
+				EBD83FC621EF1DF700DF42F8 /* PictureObject.m */,
+				EBD83FC821EF1E2100DF42F8 /* AdsObject.h */,
+				EBD83FC921EF1E2100DF42F8 /* AdsObject.m */,
+			);
+			path = ObjectModel;
+			sourceTree = "<group>";
+		};
+		EBD83FCB21EF1FB200DF42F8 /* WaterfallItem */ = {
+			isa = PBXGroup;
+			children = (
+				EB12425721ECEDFF0080FC6D /* Fetch */,
+				EB12427E21EDEF1A0080FC6D /* WaterfallItemListService.h */,
+				EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */,
+				EBD83FCD21EF206000DF42F8 /* WaterfallItemCreateService.h */,
+				EBD83FCE21EF206000DF42F8 /* WaterfallItemCreateService.m */,
+			);
+			path = WaterfallItem;
+			sourceTree = "<group>";
+		};
+		EBD83FCC21EF202800DF42F8 /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				EB12427B21EDE1E20080FC6D /* PictureStoreService.h */,
+				EB12427C21EDE1E20080FC6D /* PictureStoreService.m */,
+			);
+			path = Picture;
+			sourceTree = "<group>";
+		};
+		EBD83FD921EF27B900DF42F8 /* Waterfall */ = {
+			isa = PBXGroup;
+			children = (
+				EB12426521ECF1F90080FC6D /* WaterfallController.h */,
+				EB12426621ECF1F90080FC6D /* WaterfallController.m */,
+				EBD83FD421EF26E900DF42F8 /* PictureViewCell.h */,
+				EBD83FD521EF26E900DF42F8 /* PictureViewCell.m */,
+				EBD83FD621EF26E900DF42F8 /* PictureViewCell.xib */,
+				EBD83FDA21EF27DD00DF42F8 /* AdsViewCell.h */,
+				EBD83FDB21EF27DD00DF42F8 /* AdsViewCell.m */,
+				EBD83FDC21EF27DD00DF42F8 /* AdsViewCell.xib */,
+				EB33348921EF842B0021A20E /* WaterfallScrollService.h */,
+				EB33348A21EF842B0021A20E /* WaterfallScrollService.m */,
+			);
+			path = Waterfall;
+			sourceTree = "<group>";
+		};
+		EBD83FDF21EF2B8900DF42F8 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				EBD83FE021EF2BA000DF42F8 /* AdsCreateService.h */,
+				EBD83FE121EF2BA000DF42F8 /* AdsCreateService.m */,
+				EBD83FE321EF2C1600DF42F8 /* AdsImportService.h */,
+				EBD83FE421EF2C1600DF42F8 /* AdsImportService.m */,
+			);
+			path = Ads;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +257,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB12425321ECBC940080FC6D /* Build configuration list for PBXNativeTarget "FunCorpTest" */;
 			buildPhases = (
+				FC58B97B5779C97CC75A97DC /* [CP] Check Pods Manifest.lock */,
 				EB12423921ECBC920080FC6D /* Sources */,
 				EB12423A21ECBC920080FC6D /* Frameworks */,
 				EB12423B21ECBC920080FC6D /* Resources */,
@@ -180,24 +311,63 @@
 				EB12424D21ECBC940080FC6D /* LaunchScreen.storyboard in Resources */,
 				EB12424A21ECBC940080FC6D /* Assets.xcassets in Resources */,
 				EB12424821ECBC920080FC6D /* Main.storyboard in Resources */,
+				EBD83FD821EF26E900DF42F8 /* PictureViewCell.xib in Resources */,
+				EBD83FDE21EF27DD00DF42F8 /* AdsViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FC58B97B5779C97CC75A97DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FunCorpTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EB12423921ECBC920080FC6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB12426E21EDD28B0080FC6D /* WaterfallItemCellCollectionViewCell.m in Sources */,
+				EBD83FC421EE473C00DF42F8 /* SettingsController.m in Sources */,
+				EB12427D21EDE1E20080FC6D /* PictureStoreService.m in Sources */,
+				EBD83FD221EF227100DF42F8 /* UniqueHashGenerator.m in Sources */,
+				EBD83FC721EF1DF700DF42F8 /* PictureObject.m in Sources */,
+				EBD83FCA21EF1E2100DF42F8 /* AdsObject.m in Sources */,
 				EB12425D21ECEE770080FC6D /* DIService.m in Sources */,
+				EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */,
+				EB12427221EDDC0C0080FC6D /* DatabaseService.m in Sources */,
 				EB12424521ECBC920080FC6D /* ViewController.m in Sources */,
+				EBD83FE221EF2BA000DF42F8 /* AdsCreateService.m in Sources */,
+				EBD83FDD21EF27DD00DF42F8 /* AdsViewCell.m in Sources */,
+				EB12427921EDE0560080FC6D /* WaterfallItemObject.m in Sources */,
+				EBD83FE521EF2C1600DF42F8 /* AdsImportService.m in Sources */,
+				EB33348B21EF842B0021A20E /* WaterfallScrollService.m in Sources */,
 				EB12426721ECF1F90080FC6D /* WaterfallController.m in Sources */,
 				EB12425021ECBC940080FC6D /* main.m in Sources */,
+				EBD83FD721EF26E900DF42F8 /* PictureViewCell.m in Sources */,
+				EBD83FCF21EF206000DF42F8 /* WaterfallItemCreateService.m in Sources */,
 				EB12426021ECEEDD0080FC6D /* PlanService.m in Sources */,
 				EB12424221ECBC920080FC6D /* AppDelegate.m in Sources */,
-				EB12426321ECEFE90080FC6D /* LoadImageService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,32 +507,42 @@
 		};
 		EB12425421ECBC940080FC6D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F0D98B21803AFAB74C6B08A /* Pods-FunCorpTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B8Z65HG89Y;
 				INFOPLIST_FILE = FunCorpTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.rentateam.fun-corp-test.FunCorpTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		EB12425521ECBC940080FC6D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57A48FE5351F7C93984F3E20 /* Pods-FunCorpTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B8Z65HG89Y;
 				INFOPLIST_FILE = FunCorpTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.rentateam.fun-corp-test.FunCorpTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

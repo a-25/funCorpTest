@@ -1,8 +1,8 @@
 //
-//  LoadImageService.h
+//  UniqueHashGenerator.h
 //  FunCorpTest
 //
-//  Created by A-25 on 14/01/2019.
+//  Created by A-25 on 16/01/2019.
 //  Copyright © 2019 rentateam. All rights reserved.
 //
 
@@ -10,7 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LoadImageService : NSObject
+@interface UniqueHashGenerator : NSObject
+
++(NSString*)generate:(nullable NSArray<NSString*>*)params;
 
 @end
 

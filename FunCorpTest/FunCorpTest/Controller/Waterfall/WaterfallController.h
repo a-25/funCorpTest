@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WaterfallController : UICollectionViewController
+@interface WaterfallController : UICollectionViewController <UIScrollViewDelegate>
 
 @end
 
