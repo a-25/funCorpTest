@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) DatabaseService* databaseService;
 @property(nonatomic, strong) NSString *apiKey;
 
--(void)importFromApi:(int)page andPerPage:(int)perPage;
+-(void)importFromApi:(unsigned long)page andPerPage:(unsigned long)perPage;
 
 @end
 

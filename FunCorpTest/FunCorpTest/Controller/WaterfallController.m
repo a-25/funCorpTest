@@ -51,8 +51,6 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Register cell classes
-//    [self.collectionView registerClass:[WaterfallItemCellCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     UICollectionViewFlowLayout *layout = [self flowCollectionViewLayout];
     layout.minimumInteritemSpacing = margin;
     layout.minimumLineSpacing = margin;
@@ -81,7 +79,7 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     __weak typeof(self) weakSelf = self;
     self->notificationToken = [self.fetchService.itemList addNotificationBlock:^(RLMResults * _Nullable results, RLMCollectionChange * _Nullable change, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"Failed to open Realm on background worker: %@", error);
+            NSLog(@"Failed to open Realm in notification block: %@", error);
             return;
         }
         
@@ -161,7 +159,6 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Fetching row %ld", (long)indexPath.row);
     WaterfallItemCellCollectionViewCell *cell = (WaterfallItemCellCollectionViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     WaterfallItemObject *item = [self.fetchService.itemList objectAtIndex:indexPath.row];
     [cell configure:item];
@@ -175,19 +172,23 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 
 #pragma mark <UICollectionViewDelegate>
 
-/*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
 	return YES;
 }
-*/
 
-/*
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-*/
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    WaterfallItemObject *item = [self.fetchService.itemList objectAtIndex:indexPath.row];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:item.pageUrl]
+                                       options:@{}
+                             completionHandler:nil];
+}
+
 
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
@@ -214,11 +215,6 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
             xmax = visibleIndexPath.row;
         }
     }];
-    
-
-//    CGRect visibleRect = (CGRect){.origin = self.collectionView.contentOffset, .size = self.collectionView.bounds.size};
-//    CGPoint visiblePoint = CGPointMake(CGRectGetMidX(visibleRect), CGRectGetMidY(visibleRect));
-//    NSIndexPath *visibleIndexPath = [self.collectionView indexPathForItemAtPoint:visiblePoint];
     [self userScrolled: xmax];
 //    //scrolled to bottom end
 //    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
@@ -226,10 +222,5 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 //        [self scrolledToBottom];
 //    }
 }
-
-//for (UICollectionViewCell *cell in [self.mainImageCollection visibleCells]) {
-//    NSIndexPath *indexPath = [self.mainImageCollection indexPathForCell:cell];
-//    NSLog(@"%@",indexPath);
-//}
 
 @end

@@ -8,11 +8,10 @@
 
 #import "PlanService.h"
 
-//@TODO. Move to properties
-const unsigned short forwardFetchSize = 5;
-const unsigned short loadSize = 10;
-
 @interface PlanService()
+{
+    RLMNotificationToken *notificationToken;
+}
 
 @property(nonatomic) unsigned long loadedInDatabaseNumber;
 
@@ -30,24 +29,40 @@ const unsigned short loadSize = 10;
     if (self = [super init]){
         _currentPosition = 0;
         _databaseService = databaseService;
-        _itemListService = itemListService;
-        _loadedInDatabaseNumber = [itemListService listNumber:[databaseService getRealm]];
+        [self bindUpdateNotifications: [itemListService list:[databaseService getRealm]]];
     }
     return self;
+}
+
+- (void)dealloc {
+    [self->notificationToken invalidate];
+}
+
+-(void)bindUpdateNotifications:(RLMResults*)list
+{
+    __weak typeof(self) weakSelf = self;
+    self->notificationToken = [list addNotificationBlock:^(RLMResults * _Nullable results, RLMCollectionChange * _Nullable change, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Failed to open Realm in notification block: %@", error);
+            return;
+        }
+        
+        weakSelf.loadedInDatabaseNumber = results.count;
+    }];
 }
 
 - (void)setCurrentPosition:(unsigned long)currentPosition
 {
     _currentPosition = currentPosition;
-    if(currentPosition > _loadedInDatabaseNumber - forwardFetchSize) {
-        [self loadNext];
+    if(currentPosition > self.loadedInDatabaseNumber - self.forwardFetchSize || self.loadedInDatabaseNumber < self.forwardFetchSize) {
+        [self loadNext: self.loadedInDatabaseNumber];
     }
 }
 
--(void)loadNext
+-(void)loadNext:(unsigned long)loadedInDatabaseNumber
 {
-    int currentPage = floor(_loadedInDatabaseNumber/loadSize);
-    [_storeService importFromApi:currentPage andPerPage:loadSize];
+    int currentPage = floor(loadedInDatabaseNumber/self.loadSize);
+    [_storeService importFromApi:currentPage andPerPage:self.loadSize];
 }
 
 @end

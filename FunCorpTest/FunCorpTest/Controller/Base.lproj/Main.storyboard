@@ -38,20 +38,22 @@
                                                 <constraint firstAttribute="width" secondItem="TaF-Gd-a5d" secondAttribute="height" multiplier="1:1" id="sAV-FQ-ryy"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w27-Xm-2Qg">
-                                            <rect key="frame" x="10" y="150" width="130" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w27-Xm-2Qg">
+                                            <rect key="frame" x="10" y="150" width="130" height="40"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </view>
+                                <color key="backgroundColor" white="0.9239069134819532" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="TaF-Gd-a5d" firstAttribute="leading" secondItem="vRA-52-ywT" secondAttribute="leading" constant="10" id="2dG-u5-fYB"/>
                                     <constraint firstItem="w27-Xm-2Qg" firstAttribute="leading" secondItem="TaF-Gd-a5d" secondAttribute="leading" id="8ut-hY-ghQ"/>
                                     <constraint firstAttribute="trailing" secondItem="TaF-Gd-a5d" secondAttribute="trailing" constant="10" id="ajR-n5-RGI"/>
                                     <constraint firstItem="TaF-Gd-a5d" firstAttribute="top" secondItem="vRA-52-ywT" secondAttribute="top" constant="10" id="ofC-Y2-qZR"/>
                                     <constraint firstItem="w27-Xm-2Qg" firstAttribute="trailing" secondItem="TaF-Gd-a5d" secondAttribute="trailing" id="pgh-uW-C6x"/>
+                                    <constraint firstAttribute="bottom" secondItem="w27-Xm-2Qg" secondAttribute="bottom" constant="10" id="pvm-93-NwT"/>
                                     <constraint firstItem="w27-Xm-2Qg" firstAttribute="top" secondItem="TaF-Gd-a5d" secondAttribute="bottom" constant="10" id="uXS-qc-n8l"/>
                                 </constraints>
                                 <size key="customSize" width="150" height="200"/>

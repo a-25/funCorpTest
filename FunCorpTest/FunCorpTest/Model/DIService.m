@@ -60,6 +60,9 @@
 {
     _planService = [[PlanService alloc] initWithStoreService:_databaseService andItemListService:_waterfallItemListService];
     _planService.storeService = _waterfallItemStoreService;
+    unsigned long prefetchPageSize = 100;
+    _planService.forwardFetchSize = prefetchPageSize;
+    _planService.loadSize = prefetchPageSize;
 }
 
 -(void)initFetchService

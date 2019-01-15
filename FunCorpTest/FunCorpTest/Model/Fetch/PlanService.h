@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) unsigned long currentPosition;
 @property(nonatomic, strong) WaterfallItemStoreService* storeService;
 @property(nonatomic, strong) DatabaseService* databaseService;
-@property(nonatomic, strong) WaterfallItemListService* itemListService;
+@property(nonatomic) unsigned long forwardFetchSize;
+@property(nonatomic) unsigned long loadSize;
 - (instancetype)initWithStoreService:(DatabaseService*)databaseService andItemListService:(WaterfallItemListService*)itemListService NS_DESIGNATED_INITIALIZER;
 
 @end

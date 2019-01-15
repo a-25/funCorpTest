@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WaterfallItemObject : RLMObject
 
 @property NSString *imageUrl;
-@property NSString *cachedPath;
+@property NSString *pageUrl;
 @property NSString *title;
 @property int views;
 @property NSDate *dateAdded;

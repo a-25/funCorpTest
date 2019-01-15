@@ -13,7 +13,7 @@
 
 @implementation WaterfallItemStoreService
 
--(void)importFromApi:(int)page andPerPage:(int)perPage
+-(void)importFromApi:(unsigned long)page andPerPage:(unsigned long)perPage
 {
     //just yellow flowers - why not?
     NSString *query = @"yellow+flowers";
@@ -22,10 +22,10 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
 
-    NSString *urlStr = [NSString stringWithFormat:@"https://pixabay.com/api/?key=%@&q=%@&image_type=photo&page=%d&per_page=%d",
+    NSString *urlStr = [NSString stringWithFormat:@"https://pixabay.com/api/?key=%@&q=%@&image_type=photo&page=%ld&per_page=%ld",
                         self.apiKey,
                         query,
-                        page,
+                        page + 1,
                         perPage];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
@@ -70,6 +70,7 @@
     }
     obj.title = item[@"tags"];
     obj.views = [(NSNumber*)item[@"views"] intValue];
+    obj.pageUrl = item[@"pageURL"];
     return obj;
 }
 

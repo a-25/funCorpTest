@@ -35,8 +35,9 @@
 
 -(BOOL)isDataFetchedForItem:(WaterfallItemObject*)item
 {
+    return true;
     //Assume that path does not change since the entity exists (otherwise it would be the other imageUrl)
-    return item.cachedPath != nil;
+//    return item.cachedPath != nil;
 }
 
 -(void)fetchAsync:(WaterfallItemObject*)item completion:(nullable void (^)(WaterfallItemObject *item))completion
