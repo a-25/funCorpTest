@@ -49,12 +49,14 @@
     dispatch_async(dispatch_queue_create("background", 0), ^{
         @autoreleasepool {
             RLMRealm *realm = [weakSelf.databaseService getRealm];
+            __block long sortOrder = [WaterfallItemObject allObjectsInRealm:realm].count + 1;
             NSArray *pictureList = responseObject[@"hits"];
             [realm beginWriteTransaction];
             [pictureList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 PictureObject *item = [weakSelf createPictureObject:obj withRealm: realm];
                 [realm addObject:item];
-                [weakSelf.waterfallItemCreateService createWithPicture:item inRealm:realm];
+                [weakSelf.waterfallItemCreateService createWithPicture:item inRealm:realm withSortOrder:sortOrder];
+                sortOrder++;
             }];
             [realm commitWriteTransaction];
         }

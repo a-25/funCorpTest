@@ -30,7 +30,7 @@
 
 -(void)initialize
 {
-    _colsCount = 2;
+    _colsCount = 3;
     _pixabayApiKey = @"11279126-f72f121dda9da0d41789c9986";
     [self initDatabaseService];
     [self initWaterfallItemCreateService];
@@ -38,7 +38,6 @@
     [self initPictureStoreService];
     [self initWaterfallItemListService];
     [self initPlanService];
-    [self initFetchService];
     [self initAdsImportService];
 }
 
@@ -69,11 +68,6 @@
     _planService.loadSize = prefetchPageSize;
 }
 
--(void)initFetchService
-{
-    _fetchService = [[FetchService alloc] initWithDatabaseService:_databaseService andWaterfallItemListService:_waterfallItemListService];
-}
-
 -(void)initWaterfallItemCreateService
 {
     _waterfallItemCreateService = [[WaterfallItemCreateService alloc] init];
@@ -84,7 +78,7 @@
     _adsImportService = [[AdsImportService alloc] initWithDatabaseService:_databaseService
                                                       andAdsCreateService:_adsCreateService
                                               andWaterfallItemListService: _waterfallItemListService
-                                                              andInterval:1];
+                                                              andInterval:20];
 }
 
 -(void)initAdsCreateService

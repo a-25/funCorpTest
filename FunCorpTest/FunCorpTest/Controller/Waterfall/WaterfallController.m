@@ -12,21 +12,23 @@
 #import "PlanService.h"
 #import "DatabaseService.h"
 #import "WaterfallItemObject.h"
-#import "FetchService.h"
+#import "WaterfallItemListService.h"
 #import "SettingsController.h"
 #import "PictureViewCell.h"
 #import "AdsViewCell.h"
+#import "WaterfallScrollService.h"
 
 @interface WaterfallController () {
     RLMNotificationToken *notificationToken;
     CGFloat lastScrolledPosition;
-    CGFloat itemHeight;
+    RLMResults *itemList;
 }
 
+@property(nonatomic) CGFloat itemHeight;
 @property(nonatomic, strong) PlanService *planService;
 @property(nonatomic, strong) DatabaseService *databaseService;
-@property(nonatomic, strong) FetchService *fetchService;
 @property(nonatomic, strong) AdsImportService *adsImportService;
+@property(nonatomic, strong) WaterfallScrollService *waterfallScrollService;
 
 @end
 
@@ -39,9 +41,9 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
     [super viewDidLoad];
     
     _planService = [DIService sharedInstance].planService;
-    _fetchService = [DIService sharedInstance].fetchService;
     _databaseService = [DIService sharedInstance].databaseService;
     _adsImportService = [DIService sharedInstance].adsImportService;
+    self->itemList = [[DIService sharedInstance].waterfallItemListService list:[self.databaseService getRealm]];
     
     int margin = 10;
     
@@ -62,6 +64,7 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
     [self.collectionView registerNib:[UINib nibWithNibName:@"AdsViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifierAds];
     
     self.planService.currentPosition = 0;
+    self.waterfallScrollService = [[WaterfallScrollService alloc] init];
     [self bindUpdateNotifications];
     [self.adsImportService start];
 }
@@ -79,7 +82,7 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
 -(void)bindUpdateNotifications
 {
     __weak typeof(self) weakSelf = self;
-    self->notificationToken = [self.fetchService.itemList addNotificationBlock:^(RLMResults * _Nullable results, RLMCollectionChange * _Nullable change, NSError * _Nullable error) {
+    self->notificationToken = [self->itemList addNotificationBlock:^(RLMResults * _Nullable results, RLMCollectionChange * _Nullable change, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Failed to open Realm in notification block: %@", error);
             return;
@@ -96,12 +99,35 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
         NSLog(@"Insert: %@", [change insertionsInSection:0]);
         NSLog(@"Update: %@", [change modificationsInSection:0]);
         
-        [collectionView performBatchUpdates:^{
-            [collectionView deleteItemsAtIndexPaths:[change deletionsInSection:0]];
-            [collectionView insertItemsAtIndexPaths:[change insertionsInSection:0]];
-            [collectionView reloadItemsAtIndexPaths:[change modificationsInSection:0]];
-        } completion:^(BOOL finished) {
-            
+        CGFloat previousScrollOffset = collectionView.contentOffset.y;
+        __block NSIndexPath *currentVisibleIndexPath = [NSIndexPath indexPathForRow:NSIntegerMax inSection:0];
+        
+        [collectionView.indexPathsForVisibleItems enumerateObjectsUsingBlock:^(NSIndexPath *visibleIndexPath, NSUInteger idx, BOOL *stop) {
+            if (visibleIndexPath.row < currentVisibleIndexPath.row) {
+                currentVisibleIndexPath = visibleIndexPath;
+            }
+        }];
+        NSArray<NSIndexPath *> *inserted = [change insertionsInSection:0];
+        NSArray<NSIndexPath *> *deleted = [change deletionsInSection:0];
+        
+        [UIView performWithoutAnimation:^{
+            [collectionView performBatchUpdates:^{
+                [collectionView deleteItemsAtIndexPaths:deleted];
+                [collectionView insertItemsAtIndexPaths:inserted];
+                [collectionView reloadItemsAtIndexPaths:[change modificationsInSection:0]];
+            } completion:^(BOOL finished) {
+                BOOL adjustResult = [weakSelf.waterfallScrollService adjustScroll:collectionView
+                                                                       itemHeight:weakSelf.itemHeight
+                                                                          columns:[weakSelf columns]
+                                                             previousScrollOffset:previousScrollOffset
+                                                                previousIndexPath:currentVisibleIndexPath
+                                                               insertedIndexPaths:inserted
+                                                                deletedIndexPaths:deleted];
+                if(adjustResult) {
+                    //adjust current vieweable element
+                    [weakSelf userScrolled:previousScrollOffset];
+                }
+            }];
         }];
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -130,8 +156,8 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
     }
     CGFloat marginsAndInsets = layout.sectionInset.left + layout.sectionInset.right + collectionSafeAreaInsets.left + collectionSafeAreaInsets.right + layout.minimumInteritemSpacing * (CGFloat)(cellsPerRow - 1);
     CGFloat itemWidth = floor((self.collectionView.bounds.size.width - marginsAndInsets) / (CGFloat)cellsPerRow);
-    self->itemHeight = floor(1.33 * itemWidth);
-    layout.itemSize = CGSizeMake(itemWidth, self->itemHeight);
+    self.itemHeight = floor(1.33 * itemWidth);
+    layout.itemSize = CGSizeMake(itemWidth, self.itemHeight);
 }
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -140,8 +166,20 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
--(void)userScrolled:(NSInteger)row
+-(void)userScrolled:(CGFloat)currentScrollPosition
 {
+    //only significant changes
+    if(fabs(currentScrollPosition - self->lastScrolledPosition) < self.itemHeight) {
+        return;
+    }
+    self->lastScrolledPosition = currentScrollPosition;
+    
+    __block NSInteger row = 0;
+    [self.collectionView.indexPathsForVisibleItems enumerateObjectsUsingBlock:^(NSIndexPath *visibleIndexPath, NSUInteger idx, BOOL *stop) {
+        if (visibleIndexPath.row > row) {
+            row = visibleIndexPath.row;
+        }
+    }];
     self.planService.currentPosition = row;
 }
 
@@ -157,23 +195,27 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.fetchService.itemList.count;
+    return self->itemList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    WaterfallItemObject *item = [self.fetchService.itemList objectAtIndex:indexPath.row];
+    WaterfallItemObject *item = [self->itemList objectAtIndex:indexPath.row];
     if(item.picture) {
         PictureViewCell *cell = (PictureViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifierPicture forIndexPath:indexPath];
         [cell configure:item.picture];
-        if(![self.fetchService isDataFetchedForItem:item]) {
-            [self.fetchService fetchAsync:item completion:^(WaterfallItemObject * _Nonnull item) {
-                [cell configure:item.picture];
-            }];
-        }
+        
+        
+        
+        cell.titleLabel.text = [NSString stringWithFormat:@"(%ld)%@", item.sortOrder,cell.titleLabel.text];
         return cell;
     } else if (item.ads) {
         AdsViewCell *cell = (AdsViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifierAds forIndexPath:indexPath];
         [cell configure:item.ads];
+        
+        
+        
+        
+        cell.titleLabel.text = [NSString stringWithFormat:@"(%ld)%@", item.sortOrder,cell.titleLabel.text];
         return cell;
     } else {
         return [UICollectionViewCell new];
@@ -193,7 +235,7 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    WaterfallItemObject *item = [self.fetchService.itemList objectAtIndex:indexPath.row];
+    WaterfallItemObject *item = [self->itemList objectAtIndex:indexPath.row];
     if(item.picture){
         NSURL *url = [NSURL URLWithString:item.picture.pageUrl];
         if (@available(iOS 10.0, *)) {
@@ -207,40 +249,12 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
     }
 }
 
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
 #pragma mark <UIScrollViewDelegate>
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat currentPosition = scrollView.contentOffset.y;
-    //only significant changes
-    if(fabs(currentPosition - self->lastScrolledPosition) < self->itemHeight) {
-        return;
-    }
-    self->lastScrolledPosition = currentPosition;
-    
-    __block NSInteger xmax = 0;
-    [self.collectionView.indexPathsForVisibleItems enumerateObjectsUsingBlock:^(NSIndexPath *visibleIndexPath, NSUInteger idx, BOOL *stop) {
-        if (visibleIndexPath.row > xmax) {
-            xmax = visibleIndexPath.row;
-        }
-    }];
-    [self userScrolled: xmax];
+    [self userScrolled: currentPosition];
 }
 
 @end

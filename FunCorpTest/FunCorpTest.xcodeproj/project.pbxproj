@@ -21,8 +21,7 @@
 		EB12427921EDE0560080FC6D /* WaterfallItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427821EDE0560080FC6D /* WaterfallItemObject.m */; };
 		EB12427D21EDE1E20080FC6D /* PictureStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427C21EDE1E20080FC6D /* PictureStoreService.m */; };
 		EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */; };
-		EB12428321EE004E0080FC6D /* WaterfallItemPrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */; };
-		EB12428621EE035E0080FC6D /* FetchService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12428521EE035E0080FC6D /* FetchService.m */; };
+		EB33348B21EF842B0021A20E /* WaterfallScrollService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB33348A21EF842B0021A20E /* WaterfallScrollService.m */; };
 		EBD83FC421EE473C00DF42F8 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC321EE473C00DF42F8 /* SettingsController.m */; };
 		EBD83FC721EF1DF700DF42F8 /* PictureObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC621EF1DF700DF42F8 /* PictureObject.m */; };
 		EBD83FCA21EF1E2100DF42F8 /* AdsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC921EF1E2100DF42F8 /* AdsObject.m */; };
@@ -64,10 +63,8 @@
 		EB12427C21EDE1E20080FC6D /* PictureStoreService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictureStoreService.m; sourceTree = "<group>"; };
 		EB12427E21EDEF1A0080FC6D /* WaterfallItemListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemListService.h; sourceTree = "<group>"; };
 		EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemListService.m; sourceTree = "<group>"; };
-		EB12428121EE004E0080FC6D /* WaterfallItemPrefetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemPrefetcher.h; sourceTree = "<group>"; };
-		EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemPrefetcher.m; sourceTree = "<group>"; };
-		EB12428421EE035E0080FC6D /* FetchService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FetchService.h; sourceTree = "<group>"; };
-		EB12428521EE035E0080FC6D /* FetchService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FetchService.m; sourceTree = "<group>"; };
+		EB33348921EF842B0021A20E /* WaterfallScrollService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallScrollService.h; sourceTree = "<group>"; };
+		EB33348A21EF842B0021A20E /* WaterfallScrollService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallScrollService.m; sourceTree = "<group>"; };
 		EBD83FC221EE473C00DF42F8 /* SettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		EBD83FC321EE473C00DF42F8 /* SettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		EBD83FC521EF1DF700DF42F8 /* PictureObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureObject.h; sourceTree = "<group>"; };
@@ -174,8 +171,6 @@
 			children = (
 				EB12425E21ECEEDD0080FC6D /* PlanService.h */,
 				EB12425F21ECEEDD0080FC6D /* PlanService.m */,
-				EB12428421EE035E0080FC6D /* FetchService.h */,
-				EB12428521EE035E0080FC6D /* FetchService.m */,
 			);
 			path = Fetch;
 			sourceTree = "<group>";
@@ -232,14 +227,14 @@
 			children = (
 				EB12426521ECF1F90080FC6D /* WaterfallController.h */,
 				EB12426621ECF1F90080FC6D /* WaterfallController.m */,
-				EB12428121EE004E0080FC6D /* WaterfallItemPrefetcher.h */,
-				EB12428221EE004E0080FC6D /* WaterfallItemPrefetcher.m */,
 				EBD83FD421EF26E900DF42F8 /* PictureViewCell.h */,
 				EBD83FD521EF26E900DF42F8 /* PictureViewCell.m */,
 				EBD83FD621EF26E900DF42F8 /* PictureViewCell.xib */,
 				EBD83FDA21EF27DD00DF42F8 /* AdsViewCell.h */,
 				EBD83FDB21EF27DD00DF42F8 /* AdsViewCell.m */,
 				EBD83FDC21EF27DD00DF42F8 /* AdsViewCell.xib */,
+				EB33348921EF842B0021A20E /* WaterfallScrollService.h */,
+				EB33348A21EF842B0021A20E /* WaterfallScrollService.m */,
 			);
 			path = Waterfall;
 			sourceTree = "<group>";
@@ -353,7 +348,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB12428321EE004E0080FC6D /* WaterfallItemPrefetcher.m in Sources */,
 				EBD83FC421EE473C00DF42F8 /* SettingsController.m in Sources */,
 				EB12427D21EDE1E20080FC6D /* PictureStoreService.m in Sources */,
 				EBD83FD221EF227100DF42F8 /* UniqueHashGenerator.m in Sources */,
@@ -367,13 +361,13 @@
 				EBD83FDD21EF27DD00DF42F8 /* AdsViewCell.m in Sources */,
 				EB12427921EDE0560080FC6D /* WaterfallItemObject.m in Sources */,
 				EBD83FE521EF2C1600DF42F8 /* AdsImportService.m in Sources */,
+				EB33348B21EF842B0021A20E /* WaterfallScrollService.m in Sources */,
 				EB12426721ECF1F90080FC6D /* WaterfallController.m in Sources */,
 				EB12425021ECBC940080FC6D /* main.m in Sources */,
 				EBD83FD721EF26E900DF42F8 /* PictureViewCell.m in Sources */,
 				EBD83FCF21EF206000DF42F8 /* WaterfallItemCreateService.m in Sources */,
 				EB12426021ECEEDD0080FC6D /* PlanService.m in Sources */,
 				EB12424221ECBC920080FC6D /* AppDelegate.m in Sources */,
-				EB12428621EE035E0080FC6D /* FetchService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,14 +510,18 @@
 			baseConfigurationReference = 1F0D98B21803AFAB74C6B08A /* Pods-FunCorpTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B8Z65HG89Y;
 				INFOPLIST_FILE = FunCorpTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.rentateam.fun-corp-test.FunCorpTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -533,14 +531,18 @@
 			baseConfigurationReference = 57A48FE5351F7C93984F3E20 /* Pods-FunCorpTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B8Z65HG89Y;
 				INFOPLIST_FILE = FunCorpTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.rentateam.fun-corp-test.FunCorpTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -7,14 +7,12 @@
 //
 
 #import "WaterfallItemCreateService.h"
-#import "UniqueHashGenerator.h"
 
 @implementation WaterfallItemCreateService
 
--(WaterfallItemObject*)createWithPicture:(PictureObject*)picture inRealm:(RLMRealm*)realm
+-(WaterfallItemObject*)createWithPicture:(PictureObject*)picture inRealm:(RLMRealm*)realm withSortOrder:(long)sortOrder
 {
-    long sortOrder = [WaterfallItemObject allObjectsInRealm:realm].count + 1;
-    WaterfallItemObject *obj = [self createEmpty:realm];
+    WaterfallItemObject *obj = [self createEmpty:picture.imageUrl inRealm:realm];
     obj.picture = picture;
     obj.sortOrder = sortOrder;
     return obj;
@@ -29,18 +27,21 @@
         item.sortOrder = item.sortOrder + 1;
         [realm addObject:item];
     }
-    WaterfallItemObject *obj = [self createEmpty:realm];
+    WaterfallItemObject *obj = [self createEmpty:ads.id inRealm:realm];
     obj.ads = ads;
     obj.sortOrder = sortOrder;
     return obj;
 }
 
--(WaterfallItemObject*)createEmpty:(RLMRealm*)realm
+-(WaterfallItemObject*)createEmpty:(NSString*)id inRealm:(RLMRealm*)realm
 {
-    WaterfallItemObject *obj = [[WaterfallItemObject alloc] init];
-    obj.id = [UniqueHashGenerator generate:nil];
-    obj.dateAdded = [NSDate dateWithTimeIntervalSinceNow:0];
-    [realm addObject:obj];
+    WaterfallItemObject *obj = [WaterfallItemObject objectInRealm:realm forPrimaryKey:id];
+    if(!obj) {
+        obj = [[WaterfallItemObject alloc] init];
+        obj.id = id;
+        obj.dateAdded = [NSDate dateWithTimeIntervalSinceNow:0];
+        [realm addObject:obj];
+    }
     return obj;
 }
 

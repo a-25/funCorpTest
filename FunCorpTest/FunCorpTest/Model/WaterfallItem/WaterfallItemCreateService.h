@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WaterfallItemCreateService : NSObject
 
--(WaterfallItemObject*)createWithPicture:(PictureObject*)picture inRealm:(RLMRealm*)realm;
+-(WaterfallItemObject*)createWithPicture:(PictureObject*)picture inRealm:(RLMRealm*)realm withSortOrder:(long)sortOrder;
 -(WaterfallItemObject*)createWithAds:(AdsObject*)ads inRealm:(RLMRealm*)realm withSortOrder:(long)sortOrder;
 
 @end

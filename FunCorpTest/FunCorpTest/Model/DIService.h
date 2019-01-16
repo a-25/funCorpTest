@@ -10,7 +10,6 @@
 #import "PictureStoreService.h"
 #import "WaterfallItemListService.h"
 #import "PlanService.h"
-#import "FetchService.h"
 #import "DatabaseService.h"
 #import "WaterfallItemCreateService.h"
 #import "AdsImportService.h"
@@ -28,7 +27,6 @@ static NSString * const notificationSettingsChanged = @"notificationSettingsChan
 @property(nonatomic,strong,readonly) PictureStoreService *pictureStoreService;
 @property(nonatomic,strong,readonly) WaterfallItemListService *waterfallItemListService;
 @property(nonatomic,strong,readonly) PlanService *planService;
-@property(nonatomic,strong,readonly) FetchService *fetchService;
 @property(nonatomic,strong,readonly) WaterfallItemCreateService *waterfallItemCreateService;
 @property(nonatomic,strong,readonly) AdsImportService *adsImportService;
 @property(nonatomic,strong,readonly) AdsCreateService *adsCreateService;
