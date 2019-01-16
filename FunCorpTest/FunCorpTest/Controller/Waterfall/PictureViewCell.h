@@ -1,22 +1,22 @@
 //
-//  WaterfallItemCellCollectionViewCell.h
+//  PictureViewCell.h
 //  FunCorpTest
 //
-//  Created by A-25 on 15/01/2019.
+//  Created by A-25 on 16/01/2019.
 //  Copyright © 2019 rentateam. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "WaterfallItemObject.h"
+#import "PictureObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WaterfallItemCellCollectionViewCell : UICollectionViewCell
+@interface PictureViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
--(void)configure:(WaterfallItemObject *)item;
+-(void)configure:(PictureObject *)item;
 
 @end
 

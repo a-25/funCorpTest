@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [DIService sharedInstance];
-    [[DIService sharedInstance].waterfallItemStoreService importFromApi:1 andPerPage:20];
+//    [[DIService sharedInstance].pictureStoreService importFromApi:0 andPerPage:20];
     return YES;
 }
 

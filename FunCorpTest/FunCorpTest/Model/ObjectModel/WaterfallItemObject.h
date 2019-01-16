@@ -7,15 +7,16 @@
 //
 
 #import "RLMObject.h"
+#import "PictureObject.h"
+#import "AdsObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WaterfallItemObject : RLMObject
 
-@property NSString *imageUrl;
-@property NSString *pageUrl;
-@property NSString *title;
-@property int views;
+@property NSString *id;
+@property PictureObject *picture;
+@property AdsObject *ads;
 @property NSDate *dateAdded;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DatabaseService.h"
-#import "WaterfallItemStoreService.h"
+#import "PictureStoreService.h"
 #import "WaterfallItemListService.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PlanService : NSObject
 
 @property(nonatomic) unsigned long currentPosition;
-@property(nonatomic, strong) WaterfallItemStoreService* storeService;
+@property(nonatomic, strong) PictureStoreService* storeService;
 @property(nonatomic, strong) DatabaseService* databaseService;
 @property(nonatomic) unsigned long forwardFetchSize;
 @property(nonatomic) unsigned long loadSize;

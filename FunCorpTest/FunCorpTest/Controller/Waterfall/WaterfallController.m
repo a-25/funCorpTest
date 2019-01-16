@@ -12,13 +12,12 @@
 #import "PlanService.h"
 #import "DatabaseService.h"
 #import "WaterfallItemObject.h"
-#import "WaterfallItemCellCollectionViewCell.h"
-#import "WaterfallItemPrefetcher.h"
 #import "FetchService.h"
 #import "SettingsController.h"
+#import "PictureViewCell.h"
+#import "AdsViewCell.h"
 
 @interface WaterfallController () {
-    WaterfallItemPrefetcher *prefetcher;
     RLMNotificationToken *notificationToken;
     CGFloat lastScrolledPosition;
     CGFloat itemHeight;
@@ -27,12 +26,14 @@
 @property(nonatomic, strong) PlanService *planService;
 @property(nonatomic, strong) DatabaseService *databaseService;
 @property(nonatomic, strong) FetchService *fetchService;
+@property(nonatomic, strong) AdsImportService *adsImportService;
 
 @end
 
 @implementation WaterfallController
 
-static NSString * const reuseIdentifier = @"WaterfallItemCell";
+static NSString * const reuseIdentifierPicture = @"PictureCell";
+static NSString * const reuseIdentifierAds = @"AdsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,14 +41,7 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
     _planService = [DIService sharedInstance].planService;
     _fetchService = [DIService sharedInstance].fetchService;
     _databaseService = [DIService sharedInstance].databaseService;
-    
-    if (@available(iOS 10.0, *)) {
-//        self.collectionView.prefetchingEnabled = NO;
-//        self->prefetcher = [[WaterfallItemPrefetcher alloc] initWithFetchService:_fetchService];
-//        self.collectionView.prefetchDataSource = self->prefetcher;
-    } else {
-        // Fallback on earlier versions
-    }
+    _adsImportService = [DIService sharedInstance].adsImportService;
     
     int margin = 10;
     
@@ -64,11 +58,16 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
         // Fallback on earlier versions
     }
     
+    [self.collectionView registerNib:[UINib nibWithNibName:@"PictureViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifierPicture];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"AdsViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifierAds];
+    
     self.planService.currentPosition = 0;
     [self bindUpdateNotifications];
+    [self.adsImportService start];
 }
 
 - (void)dealloc {
+    [self.adsImportService stop];
     [self->notificationToken invalidate];
 }
 
@@ -162,15 +161,21 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    WaterfallItemCellCollectionViewCell *cell = (WaterfallItemCellCollectionViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     WaterfallItemObject *item = [self.fetchService.itemList objectAtIndex:indexPath.row];
-    [cell configure:item];
-    if(![self.fetchService isDataFetchedForItem:item]) {
-        [self.fetchService fetchAsync:item completion:^(WaterfallItemObject * _Nonnull item) {
-            [cell configure:item];
-        }];
+    if(item.picture) {
+        PictureViewCell *cell = (PictureViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifierPicture forIndexPath:indexPath];
+        [cell configure:item.picture];
+        if(![self.fetchService isDataFetchedForItem:item]) {
+            [self.fetchService fetchAsync:item completion:^(WaterfallItemObject * _Nonnull item) {
+                [cell configure:item.picture];
+            }];
+        }
+        return cell;
+    } else if (item.ads) {
+        AdsViewCell *cell = (AdsViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifierAds forIndexPath:indexPath];
+        [cell configure:item.ads];
     }
-    return cell;
+    return [UICollectionViewCell new];
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -187,14 +192,16 @@ static NSString * const reuseIdentifier = @"WaterfallItemCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     WaterfallItemObject *item = [self.fetchService.itemList objectAtIndex:indexPath.row];
-    NSURL *url = [NSURL URLWithString:item.pageUrl];
-    if (@available(iOS 10.0, *)) {
-        [[UIApplication sharedApplication] openURL:url
-                                           options:@{}
-                                 completionHandler:nil];
-    } else {
-        // Fallback on earlier versions
-        [[UIApplication sharedApplication] openURL:url];
+    if(item.picture){
+        NSURL *url = [NSURL URLWithString:item.picture.pageUrl];
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:url
+                                               options:@{}
+                                     completionHandler:nil];
+        } else {
+            // Fallback on earlier versions
+            [[UIApplication sharedApplication] openURL:url];
+        }
     }
 }
 

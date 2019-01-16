@@ -33,10 +33,13 @@
     _colsCount = 2;
     _pixabayApiKey = @"11279126-f72f121dda9da0d41789c9986";
     [self initDatabaseService];
-    [self initWaterfallItemStoreService];
+    [self initWaterfallItemCreateService];
+    [self initAdsCreateService];
+    [self initPictureStoreService];
     [self initWaterfallItemListService];
     [self initPlanService];
     [self initFetchService];
+    [self initAdsImportService];
 }
 
 -(void)initDatabaseService
@@ -44,11 +47,12 @@
     _databaseService = [[DatabaseService alloc] init];
 }
 
--(void)initWaterfallItemStoreService
+-(void)initPictureStoreService
 {
-    _waterfallItemStoreService = [[WaterfallItemStoreService alloc] init];
-    _waterfallItemStoreService.databaseService = _databaseService;
-    _waterfallItemStoreService.apiKey = _pixabayApiKey;
+    _pictureStoreService = [[PictureStoreService alloc] init];
+    _pictureStoreService.databaseService = _databaseService;
+    _pictureStoreService.apiKey = _pixabayApiKey;
+    _pictureStoreService.waterfallItemCreateService = _waterfallItemCreateService;
 }
 
 -(void)initWaterfallItemListService
@@ -59,7 +63,7 @@
 -(void)initPlanService
 {
     _planService = [[PlanService alloc] initWithStoreService:_databaseService andItemListService:_waterfallItemListService];
-    _planService.storeService = _waterfallItemStoreService;
+    _planService.storeService = _pictureStoreService;
     unsigned long prefetchPageSize = 100;
     _planService.forwardFetchSize = prefetchPageSize;
     _planService.loadSize = prefetchPageSize;
@@ -68,6 +72,23 @@
 -(void)initFetchService
 {
     _fetchService = [[FetchService alloc] initWithDatabaseService:_databaseService andWaterfallItemListService:_waterfallItemListService];
+}
+
+-(void)initWaterfallItemCreateService
+{
+    _waterfallItemCreateService = [[WaterfallItemCreateService alloc] init];
+}
+
+-(void)initAdsImportService
+{
+    _adsImportService = [[AdsImportService alloc] initWithDatabaseService:_databaseService
+                                                      andAdsCreateService:_adsCreateService
+                                                              andInterval:20];
+}
+
+-(void)initAdsCreateService
+{
+    _adsCreateService = [[AdsCreateService alloc] init];
 }
 
 @end

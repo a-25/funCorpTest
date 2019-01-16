@@ -8,5 +8,6 @@ target 'FunCorpTest' do
   # Pods for FunCorpTest
   pod 'Realm', '3.13.1'
   pod 'AFNetworking','3.2.1'
+  pod 'MD5Digest', '1.1.0'
 
 end
