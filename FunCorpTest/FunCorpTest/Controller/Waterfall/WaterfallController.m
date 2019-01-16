@@ -174,8 +174,10 @@ static NSString * const reuseIdentifierAds = @"AdsCell";
     } else if (item.ads) {
         AdsViewCell *cell = (AdsViewCell*)[collectionView  dequeueReusableCellWithReuseIdentifier:reuseIdentifierAds forIndexPath:indexPath];
         [cell configure:item.ads];
+        return cell;
+    } else {
+        return [UICollectionViewCell new];
     }
-    return [UICollectionViewCell new];
 }
 
 #pragma mark <UICollectionViewDelegate>

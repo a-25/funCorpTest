@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AdsCreateService : NSObject
 
 @property(nonatomic, strong) WaterfallItemCreateService* waterfallItemCreateService;
--(AdsObject*)createInRealm:(RLMRealm*)realm;
+-(AdsObject*)createInRealm:(RLMRealm*)realm withSortOrder:(long)sortOrder;
 
 @end
 

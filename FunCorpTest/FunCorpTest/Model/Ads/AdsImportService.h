@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AdsCreateService.h"
 #import "DatabaseService.h"
+#import "WaterfallItemListService.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,10 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) AdsCreateService *adsCreateService;
 @property(nonatomic, strong) DatabaseService *databaseService;
+@property(nonatomic, strong) WaterfallItemListService *waterfallItemListService;
 @property(nonatomic, readonly) BOOL isActivated;
 @property(nonatomic) unsigned short interval;
 
-- (instancetype)initWithDatabaseService:(DatabaseService*)databaseService andAdsCreateService:(AdsCreateService*)adsCreateService andInterval:(unsigned short)interval NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDatabaseService:(DatabaseService*)databaseService andAdsCreateService:(AdsCreateService*)adsCreateService andWaterfallItemListService:(WaterfallItemListService*)waterfallItemListService andInterval:(unsigned short)interval NS_DESIGNATED_INITIALIZER;
 
 -(void)start;
 -(void)stop;

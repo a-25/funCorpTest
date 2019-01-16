@@ -13,7 +13,7 @@
 
 -(RLMResults*)list:(RLMRealm*)realm
 {
-    return [[self getUnsortedList:realm] sortedResultsUsingKeyPath:@"dateAdded" ascending:YES];
+    return [[self getUnsortedList:realm] sortedResultsUsingKeyPath:@"sortOrder" ascending:YES];
 }
 
 -(unsigned long)listNumber:(RLMRealm*)realm

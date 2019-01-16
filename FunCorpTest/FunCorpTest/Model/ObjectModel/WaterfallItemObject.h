@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property PictureObject *picture;
 @property AdsObject *ads;
 @property NSDate *dateAdded;
+@property long sortOrder;
 
 @end
 

@@ -11,13 +11,13 @@
 
 @implementation AdsCreateService
 
--(AdsObject*)createInRealm:(RLMRealm*)realm
+-(AdsObject*)createInRealm:(RLMRealm*)realm withSortOrder:(long)sortOrder
 {
     AdsObject *obj = [[AdsObject alloc] init];
     obj.id = [UniqueHashGenerator generate:nil];
     obj.title = @"Ads:\nЗдесь могла быть ваша реклама";
     [realm addObject:obj];
-    [self.waterfallItemCreateService createWithAds:obj inRealm:realm];
+    [self.waterfallItemCreateService createWithAds:obj inRealm:realm withSortOrder:sortOrder];
     return obj;
 }
 

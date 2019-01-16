@@ -22,12 +22,13 @@
     @throw nil;
 }
 
-- (instancetype)initWithDatabaseService:(DatabaseService*)databaseService andAdsCreateService:(AdsCreateService*)adsCreateService andInterval:(unsigned short)interval
+- (instancetype)initWithDatabaseService:(DatabaseService*)databaseService andAdsCreateService:(AdsCreateService*)adsCreateService andWaterfallItemListService:(WaterfallItemListService*)waterfallItemListService andInterval:(unsigned short)interval
 {
     if (self = [super init]){
         _databaseService = databaseService;
         _interval = interval;
         _adsCreateService = adsCreateService;
+        _waterfallItemListService = waterfallItemListService;
     }
     return self;
 }
@@ -58,10 +59,20 @@
     dispatch_async(dispatch_queue_create("background", 0), ^{
         @autoreleasepool {
             RLMRealm *realm = [weakSelf.databaseService getRealm];
+            long sortOrder = [self generateRandomSortOrderWithRealm:realm];
             [realm beginWriteTransaction];
-            [weakSelf.adsCreateService createInRealm:realm];
+            [weakSelf.adsCreateService createInRealm:realm withSortOrder:sortOrder];
             [realm commitWriteTransaction];
         }
     });
 }
+
+-(long)generateRandomSortOrderWithRealm:(RLMRealm*)realm
+{
+    long lowerBound = 1;
+    long upperBound = [self.waterfallItemListService listNumber:realm];
+    //Generate random of 1:waterfall items number
+    return lowerBound + (long)(arc4random_uniform((uint32_t)(upperBound - lowerBound + 1)));
+}
+
 @end

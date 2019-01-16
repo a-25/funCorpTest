@@ -13,15 +13,25 @@
 
 -(WaterfallItemObject*)createWithPicture:(PictureObject*)picture inRealm:(RLMRealm*)realm
 {
+    long sortOrder = [WaterfallItemObject allObjectsInRealm:realm].count + 1;
     WaterfallItemObject *obj = [self createEmpty:realm];
     obj.picture = picture;
+    obj.sortOrder = sortOrder;
     return obj;
 }
 
--(WaterfallItemObject*)createWithAds:(AdsObject*)ads inRealm:(RLMRealm*)realm
+-(WaterfallItemObject*)createWithAds:(AdsObject*)ads inRealm:(RLMRealm*)realm withSortOrder:(long)sortOrder
 {
+    //Update sortOrder of next items
+    RLMResults *updateSortList = [WaterfallItemObject objectsWhere:@"sortOrder >= %ld", sortOrder];
+    for(long i = 0; i < updateSortList.count; i++){
+        WaterfallItemObject *item = (WaterfallItemObject*)updateSortList[i];
+        item.sortOrder = item.sortOrder + 1;
+        [realm addObject:item];
+    }
     WaterfallItemObject *obj = [self createEmpty:realm];
     obj.ads = ads;
+    obj.sortOrder = sortOrder;
     return obj;
 }
 

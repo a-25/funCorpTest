@@ -83,12 +83,14 @@
 {
     _adsImportService = [[AdsImportService alloc] initWithDatabaseService:_databaseService
                                                       andAdsCreateService:_adsCreateService
-                                                              andInterval:20];
+                                              andWaterfallItemListService: _waterfallItemListService
+                                                              andInterval:1];
 }
 
 -(void)initAdsCreateService
 {
     _adsCreateService = [[AdsCreateService alloc] init];
+    _adsCreateService.waterfallItemCreateService = _waterfallItemCreateService;
 }
 
 @end
