@@ -53,10 +53,6 @@
 
 - (void)setCurrentPosition:(unsigned long)currentPosition
 {
-//    if(_currentPosition == currentPosition) {
-//        return;
-//    }
-    
     _currentPosition = currentPosition;
     if(currentPosition > self.loadedInDatabaseNumber - self.forwardFetchSize || self.loadedInDatabaseNumber < self.forwardFetchSize) {
         [self loadNext: self.loadedInDatabaseNumber];
