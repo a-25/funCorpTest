@@ -20,14 +20,18 @@
 {
     UIImage *stub = [UIImage imageNamed:@"placeholder"];
     [self.pictureView setImageWithURL:[NSURL URLWithString:item.imageUrl] placeholderImage:stub];
-    self.titleLabel.text = [NSString stringWithFormat:@"Views: %d\ntags: %@", item.views, item.title];
 }
 
 -(void)prepareForReuse
 {
     [super prepareForReuse];
     self.pictureView.image = nil;
-    self.titleLabel.text = nil;
+}
+
++(CGFloat)height:(CGFloat)itemWidth forItem:(PictureObject *)item
+{
+    CGFloat imageHeight = ceil(itemWidth * item.webformatHeight / item.webformatWidth);
+    return imageHeight;
 }
 
 @end

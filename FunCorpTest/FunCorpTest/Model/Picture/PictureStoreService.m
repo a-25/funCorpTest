@@ -90,6 +90,8 @@
     obj.title = item[@"tags"];
     obj.views = [(NSNumber*)item[@"views"] intValue];
     obj.pageUrl = item[@"pageURL"];
+    obj.webformatWidth = [(NSNumber*)item[@"webformatWidth"] intValue];
+    obj.webformatHeight = [(NSNumber*)item[@"webformatHeight"] intValue];
     return obj;
 }
 

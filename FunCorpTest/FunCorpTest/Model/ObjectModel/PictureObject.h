@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSString *pageUrl;
 @property NSString *title;
 @property int views;
+@property int webformatWidth;
+@property int webformatHeight;
 
 @end
 

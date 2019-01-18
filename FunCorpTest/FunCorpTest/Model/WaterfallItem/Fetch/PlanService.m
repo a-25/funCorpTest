@@ -53,6 +53,10 @@
 
 - (void)setCurrentPosition:(unsigned long)currentPosition
 {
+//    if(_currentPosition == currentPosition) {
+//        return;
+//    }
+    
     _currentPosition = currentPosition;
     if(currentPosition > self.loadedInDatabaseNumber - self.forwardFetchSize || self.loadedInDatabaseNumber < self.forwardFetchSize) {
         [self loadNext: self.loadedInDatabaseNumber];
@@ -62,7 +66,6 @@
 -(void)loadNext:(unsigned long)loadedInDatabaseNumber
 {
     int currentPage = floor(loadedInDatabaseNumber/self.loadSize);
-    NSLog(@"LoadNext, %d, %ld", currentPage, self.loadSize);
     [_storeService importFromApi:currentPage andPerPage:self.loadSize];
 }
 

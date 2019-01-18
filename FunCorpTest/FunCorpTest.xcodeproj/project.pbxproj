@@ -22,6 +22,8 @@
 		EB12427D21EDE1E20080FC6D /* PictureStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427C21EDE1E20080FC6D /* PictureStoreService.m */; };
 		EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */; };
 		EB33348B21EF842B0021A20E /* WaterfallScrollService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB33348A21EF842B0021A20E /* WaterfallScrollService.m */; };
+		EBB27A1221F224E9008BE752 /* WaterfallControllerDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB27A1121F224E9008BE752 /* WaterfallControllerDataProvider.m */; };
+		EBB27A1521F22AE4008BE752 /* WaterfallControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB27A1421F22AE4008BE752 /* WaterfallControllerDelegate.m */; };
 		EBD83FC421EE473C00DF42F8 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC321EE473C00DF42F8 /* SettingsController.m */; };
 		EBD83FC721EF1DF700DF42F8 /* PictureObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC621EF1DF700DF42F8 /* PictureObject.m */; };
 		EBD83FCA21EF1E2100DF42F8 /* AdsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD83FC921EF1E2100DF42F8 /* AdsObject.m */; };
@@ -65,6 +67,11 @@
 		EB12427F21EDEF1A0080FC6D /* WaterfallItemListService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallItemListService.m; sourceTree = "<group>"; };
 		EB33348921EF842B0021A20E /* WaterfallScrollService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallScrollService.h; sourceTree = "<group>"; };
 		EB33348A21EF842B0021A20E /* WaterfallScrollService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallScrollService.m; sourceTree = "<group>"; };
+		EBB27A0B21F20801008BE752 /* WaterfallItemCellProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallItemCellProtocol.h; sourceTree = "<group>"; };
+		EBB27A1021F224E9008BE752 /* WaterfallControllerDataProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallControllerDataProvider.h; sourceTree = "<group>"; };
+		EBB27A1121F224E9008BE752 /* WaterfallControllerDataProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallControllerDataProvider.m; sourceTree = "<group>"; };
+		EBB27A1321F22AE4008BE752 /* WaterfallControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterfallControllerDelegate.h; sourceTree = "<group>"; };
+		EBB27A1421F22AE4008BE752 /* WaterfallControllerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterfallControllerDelegate.m; sourceTree = "<group>"; };
 		EBD83FC221EE473C00DF42F8 /* SettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		EBD83FC321EE473C00DF42F8 /* SettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		EBD83FC521EF1DF700DF42F8 /* PictureObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureObject.h; sourceTree = "<group>"; };
@@ -201,6 +208,19 @@
 			path = ObjectModel;
 			sourceTree = "<group>";
 		};
+		EBB27A0C21F22470008BE752 /* WaterfallController */ = {
+			isa = PBXGroup;
+			children = (
+				EB12426521ECF1F90080FC6D /* WaterfallController.h */,
+				EB12426621ECF1F90080FC6D /* WaterfallController.m */,
+				EBB27A1021F224E9008BE752 /* WaterfallControllerDataProvider.h */,
+				EBB27A1121F224E9008BE752 /* WaterfallControllerDataProvider.m */,
+				EBB27A1321F22AE4008BE752 /* WaterfallControllerDelegate.h */,
+				EBB27A1421F22AE4008BE752 /* WaterfallControllerDelegate.m */,
+			);
+			path = WaterfallController;
+			sourceTree = "<group>";
+		};
 		EBD83FCB21EF1FB200DF42F8 /* WaterfallItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,8 +245,7 @@
 		EBD83FD921EF27B900DF42F8 /* Waterfall */ = {
 			isa = PBXGroup;
 			children = (
-				EB12426521ECF1F90080FC6D /* WaterfallController.h */,
-				EB12426621ECF1F90080FC6D /* WaterfallController.m */,
+				EBB27A0C21F22470008BE752 /* WaterfallController */,
 				EBD83FD421EF26E900DF42F8 /* PictureViewCell.h */,
 				EBD83FD521EF26E900DF42F8 /* PictureViewCell.m */,
 				EBD83FD621EF26E900DF42F8 /* PictureViewCell.xib */,
@@ -235,6 +254,7 @@
 				EBD83FDC21EF27DD00DF42F8 /* AdsViewCell.xib */,
 				EB33348921EF842B0021A20E /* WaterfallScrollService.h */,
 				EB33348A21EF842B0021A20E /* WaterfallScrollService.m */,
+				EBB27A0B21F20801008BE752 /* WaterfallItemCellProtocol.h */,
 			);
 			path = Waterfall;
 			sourceTree = "<group>";
@@ -354,6 +374,7 @@
 				EBD83FC721EF1DF700DF42F8 /* PictureObject.m in Sources */,
 				EBD83FCA21EF1E2100DF42F8 /* AdsObject.m in Sources */,
 				EB12425D21ECEE770080FC6D /* DIService.m in Sources */,
+				EBB27A1521F22AE4008BE752 /* WaterfallControllerDelegate.m in Sources */,
 				EB12428021EDEF1A0080FC6D /* WaterfallItemListService.m in Sources */,
 				EB12427221EDDC0C0080FC6D /* DatabaseService.m in Sources */,
 				EB12424521ECBC920080FC6D /* ViewController.m in Sources */,
@@ -363,6 +384,7 @@
 				EBD83FE521EF2C1600DF42F8 /* AdsImportService.m in Sources */,
 				EB33348B21EF842B0021A20E /* WaterfallScrollService.m in Sources */,
 				EB12426721ECF1F90080FC6D /* WaterfallController.m in Sources */,
+				EBB27A1221F224E9008BE752 /* WaterfallControllerDataProvider.m in Sources */,
 				EB12425021ECBC940080FC6D /* main.m in Sources */,
 				EBD83FD721EF26E900DF42F8 /* PictureViewCell.m in Sources */,
 				EBD83FCF21EF206000DF42F8 /* WaterfallItemCreateService.m in Sources */,

@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "PictureObject.h"
+#import "WaterfallItemCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PictureViewCell : UICollectionViewCell
+@interface PictureViewCell : UICollectionViewCell <WaterfallItemCellProtocol>
 
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property(nonatomic, strong) NSString *itemId;
 
 -(void)configure:(PictureObject *)item;
++(CGFloat)height:(CGFloat)itemWidth forItem:(PictureObject *)item;
 
 @end
 

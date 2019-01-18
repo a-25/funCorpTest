@@ -14,6 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - CHTCollectionViewWaterfallLayout (0.9.7):
+    - CHTCollectionViewWaterfallLayout/ObjC (= 0.9.7)
+  - CHTCollectionViewWaterfallLayout/ObjC (0.9.7)
   - MD5Digest (1.1.0)
   - Realm (3.13.1):
     - Realm/Headers (= 3.13.1)
@@ -21,20 +24,23 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 3.2.1)
+  - CHTCollectionViewWaterfallLayout (= 0.9.7)
   - MD5Digest (= 1.1.0)
   - Realm (= 3.13.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - CHTCollectionViewWaterfallLayout
     - MD5Digest
     - Realm
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  CHTCollectionViewWaterfallLayout: 9d11068fafecac106695bb5a5d6d0f738483b598
   MD5Digest: fea371215507cfcdc3c9633d02cffc7fd075ebc3
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
 
-PODFILE CHECKSUM: dbd7de5bd7a7b7a997e33186c376d6dd9f77a74c
+PODFILE CHECKSUM: 7c2be6f9c949372c29e773536fdf3e8936d6a4a1
 
 COCOAPODS: 1.5.3

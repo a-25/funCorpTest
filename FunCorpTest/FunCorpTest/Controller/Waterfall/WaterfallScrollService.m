@@ -8,55 +8,58 @@
 
 #import "WaterfallScrollService.h"
 
-@interface WaterfallScrollService()
-
-@property(nonatomic) NSInteger adjustScrollRows;
-
-@end
-
 @implementation WaterfallScrollService
 
 -(BOOL)adjustScroll:(UICollectionView*)collectionView
-         itemHeight:(CGFloat)itemHeight
-            columns:(unsigned short) columns
-previousScrollOffset:(CGFloat)previousScrollOffset
-  previousIndexPath:(NSIndexPath*)previousIndexPath
- insertedIndexPaths:(NSArray<NSIndexPath *>*)insertedIndexPaths
-  deletedIndexPaths:(NSArray<NSIndexPath *>*)deletedIndexPaths
+           itemList:(RLMResults<WaterfallItemObject *> *)itemList
+   previousPosition:(NSInteger)previousPosition
+         previousId:(NSString*)previousId
+ previousCellOffset:(CGFloat) previousCellOffset
 {
-    if(previousIndexPath == nil) {
+    //Find the new indexPath of element of previousId
+    WaterfallItemObject *element = [[itemList objectsWhere:@"id == %@", previousId] firstObject];
+    if(!element) {
+        return NO;
+    }
+    NSUInteger currentIndex = [itemList indexOfObject:element];
+    if(currentIndex == NSNotFound) {
+        return NO;
+    }
+    if(currentIndex == previousPosition) {
         return NO;
     }
     
-    self.adjustScrollRows += [self getRowChange:previousIndexPath
-                                     insertedIndexPaths:insertedIndexPaths
-                                      deletedIndexPaths:deletedIndexPaths];
-    int stringsToScroll = floor(self.adjustScrollRows / columns);
-    if(stringsToScroll > 0) {
-        CGFloat newOffset = MIN(previousScrollOffset + stringsToScroll * itemHeight, collectionView.contentSize.height);
-        [collectionView setContentOffset:CGPointMake(0, newOffset) animated:NO];
-        self.adjustScrollRows = 0;
-        return YES;
+    //Extract the new cell
+    NSIndexPath *currentIndexPath = [NSIndexPath indexPathForRow:currentIndex inSection:0];
+    UICollectionViewCell *currentCell = [collectionView cellForItemAtIndexPath:currentIndexPath];
+    if(currentCell == nil) {
+        //Default reaction if the cell is not present on the screen (this can be because of big insertion or deletion)
+        [collectionView scrollToItemAtIndexPath:currentIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+        return NO;
     }
-    return NO;
+    
+    //Scroll
+    CGFloat newContentOffset = MAX(0, MIN(currentCell.frame.origin.y - previousCellOffset, collectionView.contentSize.height));
+    [collectionView setContentOffset:CGPointMake(0, newContentOffset) animated:NO];
+    return YES;
 }
 
--(NSInteger)getRowChange:(NSIndexPath*)previousIndexPath insertedIndexPaths:(NSArray<NSIndexPath *>*)insertedIndexPaths deletedIndexPaths:(NSArray<NSIndexPath *>*)deletedIndexPaths
+-(NSIndexPath*)getFirstVisibleIndexPath:(UICollectionView*)collectionView
 {
-    __block NSUInteger insertedBeforeCount = 0;
-    __block NSUInteger deletedBeforeCount = 0;
-    [insertedIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if(obj.row <= previousIndexPath.row) {
-            insertedBeforeCount++;
-        }
-    }];
-    [deletedIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if(obj.row <= previousIndexPath.row) {
-            deletedBeforeCount++;
-        }
-    }];
-    NSInteger deltaRow = - deletedBeforeCount + insertedBeforeCount;
-    return deltaRow;
+    NSArray<NSIndexPath *> *indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems;
+    //The first visible row
+    __block NSIndexPath *firstVisibleIndexPath;
+    if([indexPathsForVisibleItems count] == 0) {
+        firstVisibleIndexPath = nil;
+    } else {
+        firstVisibleIndexPath = [NSIndexPath indexPathForRow:NSIntegerMax inSection:0];
+        [indexPathsForVisibleItems enumerateObjectsUsingBlock:^(NSIndexPath *visibleIndexPath, NSUInteger idx, BOOL *stop) {
+            if (visibleIndexPath.row < firstVisibleIndexPath.row) {
+                firstVisibleIndexPath = visibleIndexPath;
+            }
+        }];
+    }
+    return firstVisibleIndexPath;
 }
 
 @end

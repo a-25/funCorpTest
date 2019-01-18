@@ -7,13 +7,6 @@
 //
 
 #import "DatabaseService.h"
-//#import "Defer.h"
-
-//@interface DatabaseService(Private)
-//
-//@property(nonatomic, strong) dispatch_semaphore_t multithreadLock;
-//
-//@end
 
 @implementation DatabaseService
 
@@ -21,21 +14,17 @@
 {
     if(self = [super init]) {
         _multithreadLock = dispatch_semaphore_create(1);
+        RLMRealmConfiguration *configuration = [RLMRealmConfiguration defaultConfiguration];
+        //For test projects it's ok, not for production ones
+        configuration.deleteRealmIfMigrationNeeded = YES;
+        [RLMRealmConfiguration setDefaultConfiguration:configuration];
     }
     return self;
 }
 
-//-(void)dealloc
-//{
-//    dispatch_release(self.multithreadLock);
-//}
-
 -(RLMRealm*)getRealm
 {
     dispatch_semaphore_wait(self.multithreadLock, DISPATCH_TIME_FOREVER);
-//    defer(^() {
-//        dispatch_semaphore_signal(self.multithreadLock);
-//    });
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm refresh];
     dispatch_semaphore_signal(self.multithreadLock);

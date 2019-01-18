@@ -8,18 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Realm/Realm.h"
+#import "WaterfallItemObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WaterfallScrollService : NSObject
 
 -(BOOL)adjustScroll:(UICollectionView*)collectionView
-         itemHeight:(CGFloat)itemHeight
-            columns:(unsigned short) columns
-previousScrollOffset:(CGFloat)previousScrollOffset
-  previousIndexPath:(NSIndexPath*)previousIndexPath
- insertedIndexPaths:(NSArray<NSIndexPath *>*)insertedIndexPaths
-  deletedIndexPaths:(NSArray<NSIndexPath *>*)deletedIndexPaths;
+           itemList:(RLMResults<WaterfallItemObject *> *)itemList
+   previousPosition:(NSInteger)previousPosition
+         previousId:(NSString*)previousId
+ previousCellOffset:(CGFloat) previousCellOffset;
+
+-(NSIndexPath*)getFirstVisibleIndexPath:(UICollectionView*)collectionView;
 
 @end
 
